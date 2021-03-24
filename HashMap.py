@@ -1,7 +1,6 @@
 # Missing 
 ''' 
-Read CSV 
-Reload everyday
+Event to Reload everyday
 '''
 import datetime
 import csv
