@@ -1,12 +1,15 @@
 # Missing 
 ''' 
-Event to Reload everyday
+Read CSV 
+Reload everyday
 '''
 import datetime
 import csv
 
 class Node:
+    #Key is Date
     key = 0
+    #Value is Phone Number
     value = 0
     next = None
 
@@ -90,7 +93,6 @@ class HashMap:
                     if arr[1][i] == row["Check-in location"] and arr[0][i] != row["Contact Name"]:
                         checkintime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%Y-%m-%d %H:%M:%S")
                         checkoutime = datetime.datetime.strptime(row["Check-out date"] + " " + row["Check-out time"], "%Y-%m-%d %H:%M:%S") 
-                        # Check whether person is within the safeEntry timing range 
                         if (checkoutime > arr[3][i] or checkintime < arr[2][i]):
                             continue
                         else:
@@ -117,6 +119,7 @@ class HashMap:
                     newList.insert(0, self.st[i].key)
                     data_writer.writerow(newList)
 
+    # Searching Algo: Using a Simple Linear search using 3 list
     def selectFromCsv(self, name):
         personNamelist = list()
         locationlist = list()
