@@ -70,3 +70,41 @@ graph = {
     "Wheelock Place" : {"87686851" : 3, "95066161" : 7, "94185021" : 49},
     "Zhongshan Mall" : {"91700369": 5, "82863770" : 5, "92294434" : 40, "97601182" : 4, "92245160" : 27, "83638020" : 27},
 }
+
+def dijikstra(graph,start,end,visited=[], distance = {}, predecessors = {}):
+    if start not in graph:
+        raise TypeError ('The root of the shortest path tree cannot be found')
+    if end not in graph:
+        raise TypeError ('The target of the shortest path tree cannot be found')
+    if start == end:
+        network = []
+        pred = end
+        while pred != None:
+            network.append(pred)
+            pred = predecessors.get(pred,None)
+        
+        temp = network[0]
+        for i in range(1,len(network)):
+            temp = network[i] + '--->' + temp
+        print('Shortest social network (in arr): ' + str(network))
+        print('Network: ' + temp + ",    cost=" + str(distance[end]))
+    else:
+        if not visited:
+            distance[start] = 0
+        
+        for next in graph[start]:
+            if next not in visited:
+                newDistance < distance.get(next,float('inf'))
+                distance[next] = newDistance
+                predecessors[next] = start 
+        visited.append(start)
+
+        unvisited = {}
+        for k in graph:
+            if k not in visited:
+                unvisited[k] = distance.get(k,float('inf'))
+        x = min(unvisited, key = unvisited.get)
+        dijikstra(graph,x,start,visited, distance,predecessors)
+
+
+dijikstra(graph,'Balestier Plaza', '97604430')
