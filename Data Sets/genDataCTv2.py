@@ -16,7 +16,42 @@ with open('99995219_CT.csv', mode='w') as csv_file:
         for i in range(10):
             Pnumber = str(random.randrange(80000000,99999999))
             dist = str(random.randrange(0,10))
-            string = Pnumber + ':' + dist
+            dur = str(random.randrange(0,60))
+            # string = Pnumber + ':' + dist
+
+            # hours = str(random.randrange(10,22))
+            # minutes = str(random.randrange(0,59))
+            # if int(minutes) < 10:
+            #     hours += '0'
+            #     hours += minutes
+            # else:
+            #     hours += minutes
+            # checkin = int(hours)
+            
+            # string = ':' + str(checkin)
+
+            # hours = str(random.randrange(10,22))
+            # minutes = str(random.randrange(0,59))
+            # if int(minutes) < 10:
+            #     hours += '0'
+            #     hours += minutes
+            # else:
+            #     hours += minutes
+            # checkout = int(hours)
+
+            # difference = checkout - checkin
+            # while checkout < checkin or difference < 0:
+            #         hours = str(random.randrange(10,22))
+            #         minutes = str(random.randrange(0,59))
+            #         if int(minutes) < 10:
+            #             hours += '0'
+            #             hours += minutes
+            #         else:
+            #             hours += minutes
+            #         checkout = int(hours)
+            #         difference = checkout - checkin
+
+            string = Pnumber + ':' + dist + ':' + dur
             data.append(string)
 
         csv_write.writerow(data)
