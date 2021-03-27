@@ -2,7 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 # load the graph
-G = nx.karate_club_graph()
+G = nx.les_miserables_graph()
 
 # visualize the graph
 nx.draw(G, with_labels = True)
@@ -46,5 +46,5 @@ for node in G:
     else: 
         color_map.append('green')  
 
-nx.draw(G, node_color=color_map, with_labels=True)
+nx.draw(G, node_color=color_map, with_labels=False)
 plt.show()
