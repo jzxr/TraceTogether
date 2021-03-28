@@ -29,3 +29,5 @@ class Queue:
             return value
         except:
             None
+          
+ q = Queue()
