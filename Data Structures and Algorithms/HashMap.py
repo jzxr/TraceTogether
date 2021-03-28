@@ -19,7 +19,7 @@ class Node:
 
 class HashMap:
     size = 25
-    dateBase = datetime.date.today()
+    dateBase = datetime.datetime(2021, 2, 13)
     dateRange = list()
 
     def __init__(self):
@@ -82,7 +82,7 @@ class HashMap:
     # Inefficent Search; using Linear search
     def SearchContacted(self, arr):
         for i in range(len(arr[0])):
-            with open('newtrace.csv', mode='r') as csv_file:
+            with open('SIT-NYP.csv', mode='r') as csv_file:
                 csv_read = csv.DictReader(csv_file)
                 # For each check in 
                 line_count = 0
@@ -90,14 +90,15 @@ class HashMap:
                     #Skip the header
                     if line_count < 1:
                         line_count += 1
-                    if arr[1][i] == row["Check-in location"] and arr[0][i] != row["Contact Name"]:
-                        checkintime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%Y-%m-%d %H:%M:%S")
-                        checkoutime = datetime.datetime.strptime(row["Check-out date"] + " " + row["Check-out time"], "%Y-%m-%d %H:%M:%S") 
+                    if arr[0][i] != row["Phone No."]:
+                        checkintime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M")
+                        checkoutime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M") 
+                        #print(checkintime, " ", checkoutime)
                         if (checkoutime > arr[3][i] or checkintime < arr[2][i]):
                             continue
                         else:
                             try:
-                                self.put(datetime.datetime.strptime(row["Check-in date"], '%Y-%m-%d').date(), row["Contact Number"])
+                                self.put(datetime.datetime.strptime(row["Check-in date"], '%d/%m/%Y').date(), row["Phone No."])
                             except ValueError:
                                 print(row["Check-in date"], 'Date does not exist')
 
@@ -120,12 +121,12 @@ class HashMap:
                     data_writer.writerow(newList)
 
     # Searching Algo: Using a Simple Linear search using 3 list
-    def selectFromCsv(self, name):
-        personNamelist = list()
+    def selectFromCsv(self, phone_number):
+        phonenumberlist = list()
         locationlist = list()
         starttimelist = list()
         endtimelist = list()
-        with open('newtrace.csv', mode='r') as csv_file:
+        with open('SIT-NYP.csv', mode='r') as csv_file:
             csv_read = csv.DictReader(csv_file)
             line_count = 0 
             for row in csv_read:
@@ -133,15 +134,15 @@ class HashMap:
                 if line_count < 1:
                     line_count += 1
                 # Read data from each row
-                if row["Contact Name"] == name:
-                    starttime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%Y-%m-%d %H:%M:%S")
-                    endtime = datetime.datetime.strptime(row["Check-out date"] + " " + row["Check-out time"], "%Y-%m-%d %H:%M:%S")
+                if row["Phone No."] == phone_number:
+                    starttime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M")
+                    endtime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-out time"], "%d/%m/%Y %H%M")
 
-                    personNamelist.append(name)
-                    locationlist.append(row["Check-in location"])
+                    phonenumberlist.append(phone_number)
+                    locationlist.append("SIT-NYP")
                     starttimelist.append(starttime)
                     endtimelist.append(endtime)
-            newlist = [personNamelist, locationlist, starttimelist, endtimelist]
+            newlist = [phonenumberlist, locationlist, starttimelist, endtimelist]
             return newlist
 
     # Print HasMap to console
@@ -165,9 +166,9 @@ class HashMap:
     
 newHash = HashMap()
 
-#name = input("Enter name of infected person")
-name = "Kristen Lum"
-arr = newHash.selectFromCsv(name)
+phone_number = input("Enter phone number of infected person")
+phone_number = "81841425"
+arr = newHash.selectFromCsv(phone_number)
 newHash.SearchContacted(arr)
 print()
 newHash.print()
