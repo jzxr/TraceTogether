@@ -14,19 +14,22 @@ class Node:
 
 class HashMap:
     size = 25
-    # Date Range: 20/1/2021 to 13/2/21
     dateBase = datetime.datetime(2021, 2, 13)
     dateRange = list()
 
     def __init__(self):
+        # Size is 25; cause 25 days
         self.size = HashMap.size
+        # Flag for Linear Probing of Date
         self.flag = [False for x in range(self.size)]
         self.key = dict()
         self.st = [None for x in range(self.size)]
+        # Get 25 Days
         self.putDate()
+        # Set keys for the 25 days
         self.setKey()
 
-    # Calculate Date Range: 20/1/2021 to 13/2/21
+    # Store today-constant to today date in array
     def putDate(self):
         for i in range(self.size):
             newDate = HashMap.dateBase - datetime.timedelta(days=i)
@@ -78,7 +81,7 @@ class HashMap:
     # Inefficent Search; using Linear search
     def SearchContacted(self, arr):
         for i in range(len(arr[0])):
-            with open('SIT-NYP.csv', mode='r') as csv_file:
+            with open('BALESTIER_PLAZA.csv', mode='r') as csv_file:
                 csv_read = csv.DictReader(csv_file)
                 # For each check in 
                 line_count = 0
@@ -88,8 +91,10 @@ class HashMap:
                         line_count += 1
                     if arr[0][i] != row["Phone No."]:
                         checkintime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M")
-                        checkoutime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M") 
+                        checkoutime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-out time"], "%d/%m/%Y %H%M") 
                         #print(checkintime, " ", checkoutime)
+                        
+                        # Check for infected 
                         if (checkoutime > arr[3][i] or checkintime < arr[2][i]):
                             continue
                         else:
@@ -122,7 +127,7 @@ class HashMap:
         locationlist = list()
         starttimelist = list()
         endtimelist = list()
-        with open('SIT-NYP.csv', mode='r') as csv_file:
+        with open('BALESTIER_PLAZA.csv', mode='r') as csv_file:
             csv_read = csv.DictReader(csv_file)
             line_count = 0 
             for row in csv_read:
@@ -133,6 +138,8 @@ class HashMap:
                 if row["Phone No."] == phone_number:
                     starttime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-in time"], "%d/%m/%Y %H%M")
                     endtime = datetime.datetime.strptime(row["Check-in date"] + " " + row["Check-out time"], "%d/%m/%Y %H%M")
+
+                    print(starttime, " ", endtime)
 
                     phonenumberlist.append(phone_number)
                     locationlist.append("SIT-NYP")
@@ -159,13 +166,20 @@ class HashMap:
                 temp = temp.next
             print()
 
-    
 newHash = HashMap()
 
-phone_number = input("Enter phone number of infected person")
-phone_number = "81841425"
+# Step 1. Choose Infected Phone Number 
+phone_number = "86148198"
+
+# Step2. Get Check in and Check out from Infected person
 arr = newHash.selectFromCsv(phone_number)
+
+# Step 3. Search for people who enter mall within the time range of infected person
 newHash.SearchContacted(arr)
 print()
+
+# Print Result to console 
 newHash.print()
+
+# Step 4. Write Result to csv 
 newHash.writeToCsv()
