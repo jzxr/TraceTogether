@@ -1,8 +1,3 @@
-# Missing 
-''' 
-Read CSV 
-Reload everyday
-'''
 import datetime
 import csv
 
@@ -19,6 +14,7 @@ class Node:
 
 class HashMap:
     size = 25
+    # Date Range: 20/1/2021 to 13/2/21
     dateBase = datetime.datetime(2021, 2, 13)
     dateRange = list()
 
@@ -30,7 +26,7 @@ class HashMap:
         self.putDate()
         self.setKey()
 
-    # Store today-constant to today date in array
+    # Calculate Date Range: 20/1/2021 to 13/2/21
     def putDate(self):
         for i in range(self.size):
             newDate = HashMap.dateBase - datetime.timedelta(days=i)
