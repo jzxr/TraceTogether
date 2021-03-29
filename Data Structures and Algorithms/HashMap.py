@@ -29,7 +29,7 @@ class HashMap:
         # Set keys for the 25 days
         self.setKey()
 
-    # Store today-constant to today date in array
+    # Store date range in a list
     def putDate(self):
         for i in range(self.size):
             newDate = HashMap.dateBase - datetime.timedelta(days=i)
@@ -79,6 +79,7 @@ class HashMap:
             return
 
     # Inefficent Search; using Linear search
+    # to search for all the people in the csv who is within the check-in and check-out of the infected person and put them into the HashMap
     def SearchContacted(self, arr):
         for i in range(len(arr[0])):
             with open('BALESTIER_PLAZA.csv', mode='r') as csv_file:
@@ -121,7 +122,8 @@ class HashMap:
                     newList.insert(0, self.st[i].key)
                     data_writer.writerow(newList)
 
-    # Searching Algo: Using a Simple Linear search using 3 list
+    # Searching Algo: Using a Simple Linear search using 4 list
+    # to find the infected person in the csv and get the check-in and check-out date and timing of the infected person
     def selectFromCsv(self, phone_number):
         phonenumberlist = list()
         locationlist = list()
@@ -142,7 +144,7 @@ class HashMap:
                     print(starttime, " ", endtime)
 
                     phonenumberlist.append(phone_number)
-                    locationlist.append("SIT-NYP")
+                    locationlist.append("NOT RELVENT ATM") #Implemeneted this to account for infected checkin/out timing for mutiple location but not relvent in this code 
                     starttimelist.append(starttime)
                     endtimelist.append(endtime)
             newlist = [phonenumberlist, locationlist, starttimelist, endtimelist]
