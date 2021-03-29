@@ -63,7 +63,7 @@ def send_whatsapp_msg(phone_no, text):
     '''
     @author Rishit Dagli
     send_whatsapp_msg() accepts 2 arguments - phone_no and text integer and string respectively.
-    For keyword arguments use send_whatsapp_msg(phone_no= ,test='').
+    For infected arguments use send_whatsapp_msg(phone_no= ,test='').
     Connects to whatsapp web and takes precautions for wrong mobile numbers.
     Call the isConnected method before this function.
     '''

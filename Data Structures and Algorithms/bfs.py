@@ -1,3 +1,13 @@
+# Time Complexity: 
+'''
+while loop: at most one time for each node
+for loop: at most one for rach edge?
+Combining: O(V+E)
+
+Searching:
+O(V); V for vertices
+'''
+
 from adjacencylist import g
 from queue import q
 
@@ -29,14 +39,7 @@ def printContact():
     first_degree = list()
     second_degree = list()
     for vertices in g:
-        if vertices.getDistance() == 1:
-            first_degree.append(vertices.getId())
-        if vertices.getDistance() == 2:
-            second_degree.append(vertices.getId())
-        else:
-            continue
-    print("First Degree Contact: ", first_degree)
-    print("Second Degree Contact: ", second_degree)
+        print(vertices.getId())
 
 
 bfs(g.getVertex(10))
