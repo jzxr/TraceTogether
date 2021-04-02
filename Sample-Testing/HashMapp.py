@@ -145,7 +145,7 @@ class HashMap:
     # Write HashMap to csv
     def writeToTTCsv(self):
         # file name needs to be replaced with phone number
-        with open('TraceTogether/Data Sets/TraceTogether'+phone_number+'_TT.csv', mode='w') as data_file:
+        with open('TraceTogether/Data Sets/TraceTogether/'+phone_number+'_TT.csv', mode='w') as data_file:
             data_writer = csv.writer(
                 data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for i in range(len(self.st)):
@@ -186,7 +186,7 @@ class HashMap:
                             if phone_number in line:  # if the infected exists on the current line...
                                 # print(file_path)  # print the file path
                                 # break  # no need to iterate over the rest of the file
-                                
+
                                 with open(file_path, mode='r') as f:
                                     reader = csv.DictReader(f)
                                     line_count = 0
@@ -238,14 +238,90 @@ class HashMap:
                 temp = temp.next
             print()
 
+    def open_TTFile(self):
+        # path to the root directory to search
+        root_dir = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/TraceTogether"
+        TTList = list()
+        # walk the root dir
+        for root, dirs, files in os.walk(root_dir, onerror=None):
+            for filename in files:  # iterate over the files in the current dir
+                file_path = os.path.join(root, filename)  # build the file path
+                try:
+                    with open(file_path, "rb") as f:  # open the file for reading
+                        # read the file line by line
+                        # use: for i, line in enumerate(f) if you need line numbers
+                        for line in f:
+                            try:
+                                # try to decode the contents to utf-8
+                                line = line.decode("utf-8")
+                            except ValueError:  # decoding failed, skip the line
+                                continue
+                            if phone_number in file_path:  # if the infected exists on the current line...
+                                with open(file_path, mode='r') as f:
+                                    CTreader = csv.DictReader(f)
+                                    try:
+                                        for row in CTreader:
+                                            TTList.append(row)
+                                            # for i in range(0,len(storeAllList)):
+                                            #     if TTList in storeAllList[i][0]:
+                                        #print(TTList)
+                                        return TTList
+                                    except csv.Error as e:
+                                        sys.exit('file {}, line {}: {}'.format(
+                                            filename, reader.line_num, e))
+
+                except (IOError, OSError):  # ignore read and permission errors
+                    pass
+        
+
     # Find the direct contact from the potentials and compare the "potentials"_CT.csv
-    def SearchDirectContact(self, phone_number):
+
+    def openInfected_CTFile(self, phone_number):
+        # # path to the root directory to search
+        # root_dir2 = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/TraceTogether"
+        # TTList = list()
+        # # walk the root dir
+        # for root2, dirs2, files2 in os.walk(root_dir2, onerror=None):
+        #     for filename2 in files2:  # iterate over the files in the current dir
+        #         file_path2 = os.path.join(
+        #             root2, filename2)  # build the file path
+        #         try:
+        #             with open(file_path2, "rb") as f2:  # open the file for reading
+        #                 # read the file line by line
+        #                 # use: for i, line in enumerate(f) if you need line numbers
+        #                 for line2 in f2:
+        #                     try:
+        #                         # try to decode the contents to utf-8
+        #                         line2 = line2.decode("utf-8")
+        #                     except ValueError:  # decoding failed, skip the line
+        #                         continue
+        #                     if phone_number in file_path2:  # if the infected exists on the current line...
+        #                         with open(file_path2, mode='r') as f2:
+        #                             CTreader2 = csv.DictReader(f2)
+        #                             try:
+        #                                 for row2 in CTreader2:
+        #                                     TTList.append(row2)
+                                            
+        #                             except csv.Error as e:
+        #                                 sys.exit('file {}, line {}: {}'.format(
+        #                                     filename2, CTreader2.line_num, e))
+
+        #         except (IOError, OSError):  # ignore read and permission errors
+        #             pass
+
         # path to the root directory to search
         root_dir = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/Contact Tracing"
-        
-        infectedPersonList = list()
+
+        storeAllList = list()
         dateList = list()
         personList = list()
+        TTList = list()
+        infectedList = list()
+        with open('TraceTogether/Data Sets/TraceTogether/'+phone_number+'_TT.csv', mode='r') as f2:
+            TTreader = csv.DictReader(f2)
+            for row2 in TTreader:
+                    TTList.append(row2)
+
         # walk the root dir
         for root, dirs, files in os.walk(root_dir, onerror=None):
             for filename in files:  # iterate over the files in the current dir
@@ -267,22 +343,42 @@ class HashMap:
                                         for row in CTreader:
                                             personList.append(row)
                                             personList = line.split(',')
-                                        for i in range(1,9):
-                                            infectedPersonList.append(personList[i].split(':'))
-                                            
+                                        for i in range(1, 9):
+                                            storeAllList.append(personList[i].split(':'))
                                         dateList.append(personList[0])
-
+                                            
                                     except csv.Error as e:
-                                        sys.exit('file {}, line {}: {}'.format(
-                                            filename, reader.line_num, e))
-                
+                                        sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
+                                   
                 except (IOError, OSError):  # ignore read and permission errors
                     pass
-        
-        print(dateList)
-        print(infectedPersonList)
-        print("end of CT data")         
 
+        # print(dateList)
+        # print(TTList)
+        for i in range(0, len(storeAllList)):
+            #determine the potential list by their distance.
+            #if distance at least 2m, and up to 5m.
+            if 2 >= int (storeAllList[i][1]) < 5:
+                if int(storeAllList[i][2]) < 30:
+                    infectedList = storeAllList[i][0]
+                print(infectedList)
+
+        with open('TraceTogether/Data Sets/'+'infected.csv', mode='w') as data_file:
+            data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+            for i in range(len(self.st)):
+                infectedList = list()
+                temp = self.st[i]
+                if temp == None:
+                    continue
+                else:
+                    while temp is not None:
+                        infectedList.append(temp.value)
+                        temp = temp.next
+                    # # Get key from first element in the Hash Map
+                    # infectedList.insert(0, self.st[i].key)
+                    data_writer.writerow(infectedList)
+        print("end of CT data")
+        
 
 newHash = HashMap()
 
@@ -303,4 +399,6 @@ newHash.print()
 newHash.writeToTTCsv()
 
 # Step 5. Search for people who are within close proximity
-newHash.SearchDirectContact(phone_number)
+newHash.openInfected_CTFile(phone_number)
+
+# newHash.writeInfectedCSV()
