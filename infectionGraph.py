@@ -28,7 +28,7 @@ def readCSV_SE(infectedNumber):
         print(e)
         return False
 
-#Create Graph Nodes
+#Create Graph Nodes and Edges
 def createNodes_Edge_First(graph, infectedNumber, data):
     #Set to 25 cause data has to many...
     for i in range(25):
