@@ -240,42 +240,6 @@ class HashMap:
                 temp = temp.next
             print()
 
-    def open_TTFile(self):
-        # path to the root directory to search
-        root_dir = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/TraceTogether"
-        TTList = list()
-        # walk the root dir
-        for root, dirs, files in os.walk(root_dir, onerror=None):
-            for filename in files:  # iterate over the files in the current dir
-                file_path = os.path.join(root, filename)  # build the file path
-                try:
-                    with open(file_path, "rb") as f:  # open the file for reading
-                        # read the file line by line
-                        # use: for i, line in enumerate(f) if you need line numbers
-                        for line in f:
-                            try:
-                                # try to decode the contents to utf-8
-                                line = line.decode("utf-8")
-                            except ValueError:  # decoding failed, skip the line
-                                continue
-                            if phone_number in file_path:  # if the infected exists on the current line...
-                                with open(file_path, mode='r') as f:
-                                    CTreader = csv.DictReader(f)
-                                    try:
-                                        for row in CTreader:
-                                            TTList.append(row)
-                                            # for i in range(0,len(storeAllList)):
-                                            #     if TTList in storeAllList[i][0]:
-                                        # print(TTList)
-                                        return TTList
-                                    except csv.Error as e:
-                                        sys.exit('file {}, line {}: {}'.format(
-                                            filename, CTreader.line_num, e))
-                            else:
-                                print("Phone not found in path.")
-                except (IOError, OSError):  # ignore read and permission errors
-                    pass
-
     # Find the direct contact from the potentials and compare the "potentials"_CT.csv
     def findDirectContact(self, phone_number):
         # path to the root directory to search
@@ -368,7 +332,7 @@ class HashMap:
 
             for i in gotCTfile:
                 self.findDirectContact(i)
-                
+
                 # for col in row:
                 #     direct_phone = col
                 #     print(direct_phone)
