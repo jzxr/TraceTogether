@@ -15,7 +15,10 @@ class SeperateChainingST:
     st = [None for x in range(0, m)]
 
     def hashcode(self, key):
-        return key % self.m
+        sum = 0
+        for i in key:
+            sum += ord(i)
+        return sum % self.m
 
     def put(self, key, value):
         k = self.hashcode(key)
@@ -34,20 +37,21 @@ class SeperateChainingST:
     def delete(self, value):
         for i in range(len(self.st)):
             # If head of list
-            if self.st[i].value == value:
-                print("Deleted", self.st[i].value)
-                self.st[i] = self.st[i].next
-                return
-            # If not head of list
-            prev = self.st[i]
-            temp = self.st[i].next
-            while temp is not None:
-                if temp.value == value:
-                    prev.next = temp.next 
-                    print("Deleted", temp.value)
+            if self.st[i] is not None:
+                if self.st[i].value == value:
+                    print("Deleted", self.st[i].value)
+                    self.st[i] = self.st[i].next
                     return
-                temp = temp.next
-                prev = prev.next
+                # If not head of list
+                prev = self.st[i]
+                temp = self.st[i].next
+                while temp is not None:
+                    if temp.value == value:
+                        prev.next = temp.next 
+                        print("Deleted", temp.value)
+                        return
+                    temp = temp.next
+                    prev = prev.next
         print("Value not found")
 
 
@@ -60,14 +64,17 @@ class SeperateChainingST:
             print()
 
 s = SeperateChainingST()
-s.put(0, "Z")
-s.put(1, "A")
-s.put(2, "B")
-s.put(3, "C")
-s.put(3, "D")
-s.put(4, "E")
-s.put(4, "F")
-s.put(4, "G")
-s.put(21, "P")
+s.put("H", "Z")
+s.put("M", "A")
+s.put("QUE", "B")
+s.put("Ysb  ss", "C")
+s.put("ojsb", "D")
+s.put("!kjjkasd", "PO")
+s.put("A", "Q")
+s.put("B", "L")
+s.put("C", "N")
+s.put("D", "W")
+s.put("E", "B")
+s.put("F", "K")
 s.delete("Z")
 s.print()
