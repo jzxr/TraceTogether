@@ -6,7 +6,7 @@ Reload everyday
 import datetime
 import csv
 import os
-import pathlib import Path
+#import pathlib import Path
 
 class Node:
     # Key is Date
@@ -145,9 +145,9 @@ class HashMap:
                     pass
 
     # Write HashMap to csv
-    def writeToTTCsv(self):
+    def writeToTTCsv(self, phone_number):
         # file name needs to be replaced with phone number
-        with open('TraceTogether/Data Sets/TraceTogether/'+phone_number+'_TT.csv', mode='w') as data_file:
+        with open('Data Sets/TraceTogether/'+phone_number+'_TT.csv', mode='w') as data_file:
             data_writer = csv.writer(
                 data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for i in range(len(self.st)):
@@ -330,7 +330,7 @@ class HashMap:
                 if timeWindow < 30:
                     directContactList = phone_number
 
-        with open('TraceTogether/Data Sets/Contact Tracing/'+str(phone_number)+'_DirectContact_infected.csv', mode='w') as data_file:
+        with open('Data Sets/Contact Tracing'+str(phone_number)+'_DirectContact_infected.csv', mode='w') as data_file:
             data_writer = csv.writer(
                 data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for i in range(len(self.st)):
@@ -350,21 +350,21 @@ class HashMap:
 
     #Find the indirect contact from the potentials
     def findIndirectContact(self):
-        
-        direct_phone = []
-        with open('TraceTogether/Data Sets/Contact Tracing/DirectContact_infected.csv', mode='r') as data_file:
+        direct_phone = list()
+        with open('Data Sets/Contact Tracing/DirectContact_infected.csv', mode='r') as data_file:
             data_reader = csv.reader(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for row in data_reader:
-                for col in row:
-                    direct_phone = col
-                    print(direct_phone)
-                    indirectHash = HashMap()
-                    indirectArr = newHash.selectFromCsv(direct_phone)
-                    newHash.SearchContacted(indirectArr)
-                    print()
-                    newHash.print()
-                    newHash.writeToTTCsv()
-                    newHash.findDirectContact(direct_phone)
+                print(row)
+                # for col in row:
+                #     direct_phone = col
+                #     print(direct_phone)
+                    # indirectHash = HashMap()
+                    # indirectArr = newHash.selectFromCsv(direct_phone)
+                    # newHash.SearchContacted(indirectArr)
+                    # print()
+                    # newHash.print()
+                    # newHash.writeToTTCsv()
+                    # newHash.findDirectContact(direct_phone)
 
 newHash = HashMap()
 
@@ -382,7 +382,7 @@ print()
 newHash.print()
 
 # Step 4. Write Potentials Result to TraceTogether csv
-newHash.writeToTTCsv()
+newHash.writeToTTCsv(phone_number)
 
 # Step 5. Search for people who are within close proximity - Direct Contact
 newHash.findDirectContact(phone_number)
