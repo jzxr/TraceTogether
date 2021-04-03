@@ -1,0 +1,40 @@
+html, body, #map-canvas {
+    height: 95%;
+    margin: 0px;
+    padding: 10px;
+}
+
+#draggable {
+    background-color: rgba(200,200,255,.7); 
+    width: 200px;
+    padding: 20px;
+    position:absolute;
+			top: 100px;
+			left:10px;
+			cursor: move;
+			border: black 1px solid;
+		}
+
+		#radius-label, #opacity-label {
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider {
+			width:200px;
+			margin-top: 10px;
+		}
+
+		#radius-label, #opacity-label{
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider{
+			width:200px;
+			margin-top: 10px;
+		}
+
+		#radius-slider .ui-slider-handle, 
+		#opacity-slider .ui-slider-handle
+		{
+			cursor:pointer;
+		}

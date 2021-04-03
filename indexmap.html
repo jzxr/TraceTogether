@@ -1,24 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Heatmaps</title>
-    <link rel="stylesheet" href="website/css/heatmap.css">
-    <script type="text/javascript" src="website/js/heatmap.js"></script>
+<head>
+	<title>HeatMap in Singapore for the Infected</title>
 
-  </head>
-  <body>
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map"></div>
+	<link rel="stylesheet" href="css/heatmap.css">
+	<script type="text/javascript" src="js/heatmap.js"></script>
+	<script src="./papaparse.min.js"></script>
+	<script src="./api/APIKey.js"></script>
+	<script src="./jquery-2.1.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAC8d9RnmbfSTqZZFg7-p9_5cekZX163c&callback=initMap&libraries=visualization&v=weekly"
-      async
-    ></script>
-  </body>
-</html>
+	<script>
+		$(document).ready(function () {
+			$.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization&key=" + mAPIkey, function () {
+				google.maps.event.addDomListener(window, 'load', initialize);
+			});
+			$("#csv-file").change(handleFileSelect);
+
+			$(function () {
+				$("#draggable").draggable();
+			});
+
+			$(function () {
+				$("#radius-slider").slider({
+					orientation: "horizontal",
+					range: "min",
+					min: 1,
+					max: 50,
+					value: 25,
+					slide: function (event, ui) {
+						$("#radius-label").html("Radius: " + ui.value);
+						if (heatmap == null) return;
+						heatmap.set('radius', ui.value);
+						radius = ui.value;
+					}
+				});
+
+				$("#opacity-slider").slider({
+					orientation: "horizontal",
+					range: "min",
+					min: 0,
+					max: 100,
+					value: 50,
+					slide: function (event, ui) {
+						$("#opacity-label").html("Opacity: " + ui.value / 100);
+						if (heatmap == null) return;
+						heatmap.set('opacity', ui.value / 100);
+						opacity = ui.value;
+					}
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<!-- there goes the map -->
+	<div id="map-canvas"> </div>
+
+	<!-- the draggable input and display controls -->
+	<div id="draggable">
+		<input type="file" id="csv-file" name="files" />
+		<div id="radius-label">Radius: 20</div>
+		<div id="radius-slider"></div>
+
+		<div id="opacity-label">Opacity: 0.5</div>
+		<div id="opacity-slider"></div>
+
+	</div>
+</body>
