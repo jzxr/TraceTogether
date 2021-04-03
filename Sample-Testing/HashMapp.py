@@ -314,11 +314,25 @@ class HashMap:
 
     #Find the indirect contact from the potentials
     def findIndirectContact(self):
-        direct_phone = list()
+        direct_phone = []
+        gotCTfile = []
+        noCTfile.append
         with open('Data Sets/Contact Tracing/DirectContact_infected.csv', mode='r') as data_file:
             data_reader = csv.reader(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for row in data_reader:
-                print(row)
+                direct_phone = row
+
+            for i in direct_phone:
+                directory = 'Data Sets/Contact Tracing/' + str(i) +'_CT.csv'
+
+                if os.path.isfile(directory):
+                    gotCTfile.append(i)
+                else:
+                    noCTfile.append(i)
+
+            for i in gotCTfile:
+                self.findDirectContact(i)
+                
                 # for col in row:
                 #     direct_phone = col
                 #     print(direct_phone)
