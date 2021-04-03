@@ -11,9 +11,6 @@ def mergeSort(n):
         j=0
         k=0
 
-        print(len(lefthalf))
-        print(len(righthalf))
-
         while i<len(lefthalf) and j<len(righthalf):
             if lefthalf[i] <= righthalf[j]:
                 n[k] = lefthalf[i]
@@ -31,9 +28,3 @@ def mergeSort(n):
             n[k] = righthalf[j]
             j=j+1
             k=k+1
-    #print("Merging ", n)
-
-newlist = [54,26,93,17,77,31,44,55,20]
-mergeSort(newlist)
-print(newlist)
-
