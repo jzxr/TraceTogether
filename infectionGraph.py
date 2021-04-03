@@ -12,6 +12,7 @@ def readCSV_SE(infectedNumber):
 
     fileName = str(infectedNumber) + "_FirstDegree_SE.csv"
     directory = root / fileName
+    print(directory)
 
     try:
         with open(directory,'r') as file:
@@ -22,6 +23,7 @@ def readCSV_SE(infectedNumber):
 
             #Convert 2D List to 1D
             data = list(chain.from_iterable(data))
+            print(data)
             return data
 
     except Exception as e:
