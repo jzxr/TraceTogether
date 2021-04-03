@@ -3,7 +3,7 @@ import networkx as nx
 import csv
 from pathlib import Path
 from itertools import chain
-from SecondDegree import newHash
+from Find_Contacted import newHash
 
 def createNodes_Edge_First(graph, infectedNumber):
     key_list = list(newHash.key.keys())
