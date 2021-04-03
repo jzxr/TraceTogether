@@ -6,7 +6,7 @@ Reload everyday
 import datetime
 import csv
 import os
-
+import pathlib import Path
 
 class Node:
     # Key is Date
@@ -139,6 +139,8 @@ class HashMap:
                                             sys.exit('file {}, line {}: {}'.format(
                                                 filename, reader.line_num, e))
                                     break
+                                else:
+                                    print("Phone not found in path.")
                 except (IOError, OSError):  # ignore read and permission errors
                     pass
 
@@ -205,18 +207,18 @@ class HashMap:
 
                                                 print(starttime, " ", endtime)
 
-                                                phonenumberlist.append(
-                                                    phone_number)
+                                                phonenumberlist.append(phone_number)
                                                 locationlist.append(file_path)
                                                 starttimelist.append(starttime)
                                                 endtimelist.append(endtime)
-                                        potentialList = [
-                                            phonenumberlist, locationlist, starttimelist, endtimelist]
+                
+                                        potentialList = [phonenumberlist, locationlist, starttimelist, endtimelist]
                                         return potentialList
                                     except csv.Error as e:
-                                        sys.exit('file {}, line {}: {}'.format(
-                                            filename, reader.line_num, e))
+                                        sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
                                 break
+                            else:
+                                print("Phone not found in path.")
                 except (IOError, OSError):  # ignore read and permission errors
                     pass
 
@@ -264,51 +266,18 @@ class HashMap:
                                             TTList.append(row)
                                             # for i in range(0,len(storeAllList)):
                                             #     if TTList in storeAllList[i][0]:
-                                        #print(TTList)
+                                        # print(TTList)
                                         return TTList
                                     except csv.Error as e:
                                         sys.exit('file {}, line {}: {}'.format(
-                                            filename, reader.line_num, e))
-
+                                            filename, CTreader.line_num, e))
+                            else:
+                                print("Phone not found in path.")
                 except (IOError, OSError):  # ignore read and permission errors
                     pass
-        
 
     # Find the direct contact from the potentials and compare the "potentials"_CT.csv
-
-    def openInfected_CTFile(self, phone_number):
-        # # path to the root directory to search
-        # root_dir2 = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/TraceTogether"
-        # TTList = list()
-        # # walk the root dir
-        # for root2, dirs2, files2 in os.walk(root_dir2, onerror=None):
-        #     for filename2 in files2:  # iterate over the files in the current dir
-        #         file_path2 = os.path.join(
-        #             root2, filename2)  # build the file path
-        #         try:
-        #             with open(file_path2, "rb") as f2:  # open the file for reading
-        #                 # read the file line by line
-        #                 # use: for i, line in enumerate(f) if you need line numbers
-        #                 for line2 in f2:
-        #                     try:
-        #                         # try to decode the contents to utf-8
-        #                         line2 = line2.decode("utf-8")
-        #                     except ValueError:  # decoding failed, skip the line
-        #                         continue
-        #                     if phone_number in file_path2:  # if the infected exists on the current line...
-        #                         with open(file_path2, mode='r') as f2:
-        #                             CTreader2 = csv.DictReader(f2)
-        #                             try:
-        #                                 for row2 in CTreader2:
-        #                                     TTList.append(row2)
-                                            
-        #                             except csv.Error as e:
-        #                                 sys.exit('file {}, line {}: {}'.format(
-        #                                     filename2, CTreader2.line_num, e))
-
-        #         except (IOError, OSError):  # ignore read and permission errors
-        #             pass
-
+    def findDirectContact(self, phone_number):
         # path to the root directory to search
         root_dir = "/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/Data Sets/Contact Tracing"
 
@@ -316,11 +285,7 @@ class HashMap:
         dateList = list()
         personList = list()
         TTList = list()
-        infectedList = list()
-        with open('TraceTogether/Data Sets/TraceTogether/'+phone_number+'_TT.csv', mode='r') as f2:
-            TTreader = csv.DictReader(f2)
-            for row2 in TTreader:
-                    TTList.append(row2)
+        directContactList = list()
 
         # walk the root dir
         for root, dirs, files in os.walk(root_dir, onerror=None):
@@ -344,41 +309,62 @@ class HashMap:
                                             personList.append(row)
                                             personList = line.split(',')
                                         for i in range(1, 9):
-                                            storeAllList.append(personList[i].split(':'))
-                                        dateList.append(personList[0])
-                                            
+                                            storeAllList.append(
+                                                personList[i].split(':'))
+                                        #dateList.append(personList[0])
+
                                     except csv.Error as e:
-                                        sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
-                                   
+                                        sys.exit('file {}, line {}: {}'.format(
+                                            filename, reader.line_num, e))
+
                 except (IOError, OSError):  # ignore read and permission errors
                     pass
 
-        # print(dateList)
-        # print(TTList)
         for i in range(0, len(storeAllList)):
-            #determine the potential list by their distance.
-            #if distance at least 2m, and up to 5m.
-            if 2 >= int (storeAllList[i][1]) < 5:
-                if int(storeAllList[i][2]) < 30:
-                    infectedList = storeAllList[i][0]
-                print(infectedList)
+            # determine the potential list by their distance.
+            # if distance at least 2m, and up to 5m.
+            phone_number = storeAllList[i][0]
+            dist = int(storeAllList[i][1])
+            timeWindow = int(storeAllList[i][2])
+            if 2 >= dist < 5:
+                if timeWindow < 30:
+                    directContactList = phone_number
 
-        with open('TraceTogether/Data Sets/'+'infected.csv', mode='w') as data_file:
-            data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        with open('TraceTogether/Data Sets/Contact Tracing/'+str(phone_number)+'_DirectContact_infected.csv', mode='w') as data_file:
+            data_writer = csv.writer(
+                data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for i in range(len(self.st)):
-                infectedList = list()
+                directContactList = list()
                 temp = self.st[i]
                 if temp == None:
                     continue
                 else:
                     while temp is not None:
-                        infectedList.append(temp.value)
+                        directContactList.append(temp.value)
                         temp = temp.next
                     # # Get key from first element in the Hash Map
                     # infectedList.insert(0, self.st[i].key)
-                    data_writer.writerow(infectedList)
+                    data_writer.writerow(directContactList)
+
         print("end of CT data")
+
+    #Find the indirect contact from the potentials
+    def findIndirectContact(self):
         
+        direct_phone = []
+        with open('TraceTogether/Data Sets/Contact Tracing/DirectContact_infected.csv', mode='r') as data_file:
+            data_reader = csv.reader(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+            for row in data_reader:
+                for col in row:
+                    direct_phone = col
+                    print(direct_phone)
+                    indirectHash = HashMap()
+                    indirectArr = newHash.selectFromCsv(direct_phone)
+                    newHash.SearchContacted(indirectArr)
+                    print()
+                    newHash.print()
+                    newHash.writeToTTCsv()
+                    newHash.findDirectContact(direct_phone)
 
 newHash = HashMap()
 
@@ -398,7 +384,7 @@ newHash.print()
 # Step 4. Write Potentials Result to TraceTogether csv
 newHash.writeToTTCsv()
 
-# Step 5. Search for people who are within close proximity
-newHash.openInfected_CTFile(phone_number)
+# Step 5. Search for people who are within close proximity - Direct Contact
+newHash.findDirectContact(phone_number)
 
-# newHash.writeInfectedCSV()
+newHash.findIndirectContact()
