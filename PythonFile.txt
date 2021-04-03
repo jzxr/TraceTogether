@@ -1,0 +1,5 @@
+main.py - Main CLI and Functions calling.
+contactCT.py - to produce first Degree CT and Second Degree CT.
+contactSE.py - to produce first Degree SE and Second Degree SE.
+messenger.py - to sent out sms based on given numbers.
+infectionVector.py - to plot the infection graph.
