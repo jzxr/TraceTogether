@@ -163,6 +163,30 @@ def writeToCsv(newHash, filename, color):
                 newList.insert(0, str(newHash.st[i].key).split(" ")[0])
                 data_writer.writerow(newList)
 
+# Write to CSV to be used for HeatMap and Website Table
+def CsvForHtml(newHash, infectedperson):
+    filename = "WriteToHtml.csv"
+    file_exists = os.path.isfile(filename)
+    with open(filename, mode='w') as data_file:
+        headers = ['Date', 'Phone-Number', 'Location', 'Degree Contact']
+        data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+
+        if not file_exists:
+            data_writer.writerow(headers)
+        
+        for i in range(len(newHash.st)):
+            newList = list()
+            temp = newHash.st[i]
+            if temp == None:
+                continue
+            else:
+                while temp is not None:
+                    if temp.parentNode is infectedperson:
+                        data_writer.writerow([str(temp.key).split(' ')[0], temp.value, temp.location, "First Degree"])
+                    else:
+                        data_writer.writerow([str(temp.key).split(' ')[0], temp.value, temp.location, "Second Degree"])
+                    temp = temp.next
+
 
 #################### Second Degree Contact Code ############################
 
@@ -193,6 +217,8 @@ else:
 SearchSecondDegree()
 WriteSecondDegreeToCsv(newHash)
 newHash.printHashMap()
+
+CsvForHtml(newHash, infectedperson)
 
 reset()
 
