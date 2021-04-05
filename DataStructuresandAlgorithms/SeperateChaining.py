@@ -10,9 +10,10 @@ class Node:
         self.value = value
 
 class SeperateChainingST:
+
     # Size of SeperateChaining
-    m = 5
-    st = [None for x in range(0, m)]
+    m = 7
+    st = [None for x in range(0,m)]
 
     def hashcode(self, key):
         sum = 0
@@ -56,25 +57,28 @@ class SeperateChainingST:
 
 
     def print(self):
-        for i in range(len(self.st)):
-            temp = self.st[i]
-            while temp is not None:
-                print(temp.value, end = ",")
-                temp = temp.next
-            print()
+        print(self.st)
+        # for i in range(len(self.st)):
+        #     temp = self.st[i]
+        #     if temp is not None:
+        #         print(temp.key, end=':')
+        #     while temp is not None:
+        #         print(temp.value, end = ",")
+        #         temp = temp.next
+        #     print()
+        
 
-s = SeperateChainingST()
-s.put("H", "Z")
-s.put("M", "A")
-s.put("QUE", "B")
-s.put("Ysb  ss", "C")
-s.put("ojsb", "D")
-s.put("!kjjkasd", "PO")
-s.put("A", "Q")
-s.put("B", "L")
-s.put("C", "N")
-s.put("D", "W")
-s.put("E", "B")
-s.put("F", "K")
-s.delete("Z")
-s.print()
+# s = SeperateChainingST()
+# s.put("H", "Z")
+# s.put("M", "A")
+# s.put("QUE", "B")
+# s.put("Ysb  ss", "C")
+# s.put("ojsb", "D")
+# s.put("!kjjkasd", "PO")
+# s.put("A", "Q")
+# s.put("B", "L")
+# s.put("C", "N")
+# s.put("D", "W")
+# s.put("E", "B")
+# s.put("F", "K")
+# s.print()

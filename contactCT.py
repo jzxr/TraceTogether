@@ -3,7 +3,8 @@ import csv, os
 from pathlib import Path
 from itertools import chain
 from DataStructuresandAlgorithms.BST import BST
-
+from DataStructuresandAlgorithms.SeperateChaining import SeperateChainingST
+from DataStructuresandAlgorithms.HashMap import HashMap
 
 #Create a CSV of first Degree Contact.
 def firstDegreeCT(infected_phoneNo, infectionDate, days):
@@ -108,7 +109,7 @@ def secondDegreeCT(infected_phoneNo, infectionDate, data_CT_True):
         os.replace(src, dst)
 
 def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
-    dataList = []
+    Hmap = SeperateChainingST()
     for i in data_CT_True:
         data = []
         root = Path("Data Sets/Results/")
@@ -121,15 +122,26 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
                     data.append(row)
         except Exception as e:
             print(e)
+        
+        for i in range(0,len(data)):
+            print(str(data[i][0]))
+            for r in range(1,len(data[i])):
+                Hmap.put(str(data[i][0]),str(data[i][r]))
 
-        dataList.append(data)
+    Hmap.print()
+
 
     #To add hash map to merge the data.
             
-def uiFormating(infected_phoneNo):
+def uiFormating(infected_phoneNo, deg):
     data = []
     root = Path("Data Sets/Results/")
-    fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
+
+    if deg == 1:
+        fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
+    elif deg ==2:
+        pass
+
     directory = root / fileName
     try:
         with open(directory,'r') as file:
@@ -140,9 +152,11 @@ def uiFormating(infected_phoneNo):
         print(e)
         return False
 
-    print(data)
+    if deg ==1:
+        fileName = str(infected_phoneNo) + "_UiFirstDegreeContact.csv"
+    elif deg ==2:
+        pass
 
-    fileName = str(infected_phoneNo) + "_UiFirstDegreeContact.csv"
     directory = root / fileName
     #format to Ui requriments.
     try:
@@ -172,4 +186,4 @@ for i in data_CT_True:
 data_CT_True = newTree.inOrder()
 secondDegreeCT(86148198, "13/2/2021", data_CT_True)
 mergeSecondDegreeCT(86148198, data_CT_True)
-uiFormating(86148198)
+uiFormating(86148198,1)
