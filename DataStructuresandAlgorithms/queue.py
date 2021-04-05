@@ -30,4 +30,3 @@ class Queue:
         except:
             None
           
- q = Queue()
