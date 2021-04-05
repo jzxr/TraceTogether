@@ -1,6 +1,7 @@
 from contactCT import contactCT
 from sms import sendSHN_Notice
 from FindContacted_SE import findContactSE
+from infectedGraph_SE import infectedPlot
 #CLI interface
 
 def main():
@@ -11,6 +12,7 @@ def main():
     findContactSE(infected_phoneNo)
 
     sendSHN_Notice()
+    infectedPlot(infected_phoneNo)
 
 if __name__ == "__main__":
     main()

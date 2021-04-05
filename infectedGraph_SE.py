@@ -13,12 +13,13 @@ def createNodes_Edge_First(graph, infectedNumber):
         temp = newHash.st[i]
         counter = 0
 
+        #Limit is those commented out.
         while temp is not None:
-            if temp.parentNode is not infectedNumber:
-                graph.add_node(temp.value)
-                graph.add_node(temp.parentNode)
-                graph.add_edge(temp.parentNode, temp.value)
-                graph.add_edge(infectedNumber, temp.parentNode)
+            # if temp.parentNode is not infectedNumber:
+            graph.add_node(temp.value)
+                # graph.add_node(temp.parentNode)
+                # graph.add_edge(temp.parentNode, temp.value)
+                # graph.add_edge(infectedNumber, temp.parentNode)
             temp = temp.next 
         print()
 
@@ -36,7 +37,7 @@ def createColorNodes(graph, infectedNumber):
     return color_map
         
 
-def main(infectedNumber):
+def infectedPlot(infectedNumber):
     graph = nx.Graph()
 
     createNodes_Edge_First(graph, infectedNumber)
@@ -44,9 +45,6 @@ def main(infectedNumber):
     graph.add_node(infectedNumber, color= "red")
 
     color_map = createColorNodes(graph, infectedNumber)
-    nx.draw(graph, node_color=color_map, with_labels=True)
+    nx.draw(graph, node_color=color_map, with_labels=False)
     plt.savefig("graph.png", format= "png")
     plt.show()
-
-infectedNumber = "86148198"
-main(infectedNumber)
