@@ -40,9 +40,17 @@
         <ul class="nav">
 
           <li class="active ">
-            <a href="./index.html">
-              <i class="nc-icon nc-tile-56"></i>
+            <a href="Tables">
+              <i class="nc-icon nc-tile-70"></i>
               <p>Table List</p>
+            </a>
+            <a href="">
+              <i class="nc-icon nc-tile-70"></i>
+              <p>Map</p>
+            </a>
+            <a href="">
+              <i class="nc-icon nc-tile-70"></i>
+              <p>Graph</p>
             </a>
           </li>
           <li>
@@ -66,7 +74,11 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
 
+<<<<<<< Updated upstream
             <a class="navbar-brand" href="javascript:;">1984 TraceTogether</a>
+=======
+            <a class="navbar-brand" href="javascript:;">1984 TT</a>
+>>>>>>> Stashed changes
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +97,7 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
+      <section id="Tables" div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -112,6 +124,7 @@
             </div>
           </div>
         </div>
+<<<<<<< Updated upstream
 
         <div class="row">
           <div class="col-md-12">
@@ -130,8 +143,27 @@
 
                         </div>
                         <br />
+=======
+        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="table-responsive ">
+                    <div class="float-container">
+                      <h2>Nodes</h2>
+
+                      <div class="float-left">
+
+                        <h3>Infected Nodes</h3>
+                        <img src="DataStructuresandAlgorithms/SEOutput/graph.png" width="500" height="300" alt="">
+>>>>>>> Stashed changes
 
                       </div>
+                      <br />
+
                     </div>
                   </div>
                 </div>
@@ -139,11 +171,13 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- /.container -->
+      <!-- /.container -->
 
-        <!-- Bootstrap core JavaScript
+      <!-- Bootstrap core JavaScript
                 ================================================== -->
+<<<<<<< Updated upstream
         <!-- Placed at the end of the document so the pages load faster -->
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -171,6 +205,35 @@
 
 
         </script>
+=======
+      <!-- Placed at the end of the document so the pages load faster -->
+
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.csv.min.js"></script>
+      <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+      <script type="text/javascript" src="js/convertcsv.js"></script>
+
+      <script type="text/javascript">
+        function format_link(link) {
+          if (link)
+            return "<a href='" + link + "' target='_blank'>" + "Link" + "</a>";
+          else
+            return "";
+        }
+        //Safe-Entry Data
+        CsvToHtmlTable.init({
+          csv_path: 'DataStructuresandAlgorithms/SEOutput/WriteToHtml.csv',
+          element: 'SE-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+
+
+      </script>
+>>>>>>> Stashed changes
 
 </body>
 
