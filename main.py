@@ -1,5 +1,6 @@
 from contactCT import contactCT
 from sms import sendSHN_Notice
+from FindContacted_SE import findContactSE
 #CLI interface
 
 def main():
@@ -7,6 +8,7 @@ def main():
     infectionDate = input("Please Enter the date of infection: Eg. 13/2/2021\n")
 
     contactCT(infected_phoneNo,infectionDate,14)
+    findContactSE(infected_phoneNo)
 
     sendSHN_Notice()
 
