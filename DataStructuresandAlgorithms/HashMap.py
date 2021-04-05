@@ -1,5 +1,3 @@
-import csv
-import os
 import datetime
 
 class Node:
@@ -100,7 +98,7 @@ class HashMap:
             if temp == None:
                 print("None", end="")
             while temp is not None:
-                print(temp.value, temp.color, end=", ")
+                print(temp.value, temp.location, end=", ")
                 temp = temp.next
             print()
 

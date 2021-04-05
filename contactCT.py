@@ -193,7 +193,7 @@ def contactCT(infected_phoneNo,infectionDate, days):
     firstDegreeCT(infected_phoneNo,infectionDate,days)
     data_CT_True, data_CT_False = secondDegreeCTExist(infected_phoneNo)
 
-    #Remove Duplicated numbers using binary search tree.
+    #Remove Duplicated numbers and sort using BST.
     newTree1 = BST()
     for i in data_CT_True:
         newTree1.put(str(i))
@@ -211,7 +211,3 @@ def contactCT(infected_phoneNo,infectionDate, days):
     uiFormating(infected_phoneNo,1)
     uiFormating(infected_phoneNo,2)
     getTTdata(infected_phoneNo,data_CT_False)
-
-
-
-contactCT(86148198, "13/2/2021", 14)
