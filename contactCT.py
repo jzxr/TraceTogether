@@ -124,10 +124,42 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
 
         dataList.append(data)
 
-    size = len(dataList)
-    print(size)
+    #To add hash map to merge the data.
             
+def uiFormating(infected_phoneNo):
+    data = []
+    root = Path("Data Sets/Results/")
+    fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
+    directory = root / fileName
+    try:
+        with open(directory,'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                data.append(row)
+    except Exception as e:
+        print(e)
+        return False
 
+    print(data)
+
+    fileName = str(infected_phoneNo) + "_UiFirstDegreeContact.csv"
+    directory = root / fileName
+    #format to Ui requriments.
+    try:
+        writer =csv.writer(open(directory, "w"), delimiter = ",",  lineterminator = "\n")
+        Header = ['Date','Phone No.']
+        writer.writerow(Header)
+        for i in range(0,len(data)):
+            date = data[i][0]
+            for r in range(1,len(data[i])):
+                temp2 = []
+                temp2.append(date)
+                temp2.append(data[i][r])
+                writer.writerow(temp2)
+    except Exception as e:
+        print(e)
+
+    
 
 firstDegreeCT(86148198,"13/2/2021",14)
 data_CT_True, data_CT_False = secondDegreeCTExist(86148198)
@@ -135,9 +167,9 @@ data_CT_True, data_CT_False = secondDegreeCTExist(86148198)
 #Remove Duplicated numbers using binary search tree.
 newTree = BST()
 for i in data_CT_True:
-    print(i)
     newTree.put(str(i))
 
 data_CT_True = newTree.inOrder()
 secondDegreeCT(86148198, "13/2/2021", data_CT_True)
 mergeSecondDegreeCT(86148198, data_CT_True)
+uiFormating(86148198)
