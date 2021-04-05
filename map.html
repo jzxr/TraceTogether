@@ -3,9 +3,9 @@
 
 	<link rel="stylesheet" href="css/heatmap.css">
 	<script type="text/javascript" src="js/heatmap.js"></script>
-	<script src="./papaparse.min.js"></script>
-	<script src="./api/APIKey.js"></script>
-	<script src="./jquery-2.1.1.min.js"></script>
+	<script src="js/papaparse.min.js"></script>
+	<script src="js/api/APIKey.js"></script>
+	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
@@ -54,12 +54,16 @@
 </head>
 
 <body>
-	<!-- there goes the map -->
+	<!-- here goes the map -->
 	<div id="map-canvas"> </div>
 
 	<!-- the draggable input and display controls -->
 	<div id="draggable">
 		<input type="file" id="csv-file" name="files" />
+
+		
+		<button onclick="toggleHeatmap()">Toggle Heatmap</button>
+		
 		<div id="radius-label">Radius: 20</div>
 		<div id="radius-slider"></div>
 
