@@ -5,6 +5,7 @@ from infectedGraph_SE import infectedPlot
 #CLI interface
 
 def main():
+    #Inputs
     infected_phoneNo = input("Please Enter the infected Phone No.: 88888888\n")
     infectionDate = input("Please Enter the date of infection: Eg. 13/2/2021\n")
 
