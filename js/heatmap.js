@@ -1,72 +1,93 @@
-let map, heatmap;
+var map, pointarray, heatmap;
+var mainMap = {};
+var dataArray = {};
+var dataIndex = [];
+var _mink, _maxk;
+var radius, opacity;
 
-function initMap() {
-    
-    var singapore = new google.maps.LatLng(1.364917, 103.822872);
-    
-    map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 12,
-    center: singapore,
-    mapTypeId: "satellite",
-  });
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: getPoints(),
-    map: map,
-  });
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function handleFileSelect(evt) {
+    var file = evt.target.files[0];
+    mainMap = {};
+    dataArray = {};
+    dataIndex = [];
+    Papa.parse(file, {
+        header: true,
+        dynamicTyping: true,
+        complete: function (results) {
+            csv = [];
+            if (results.meta.fields.indexOf("weight") == -1) {
+                for (idx in results["data"]) {
+                    var row = results["data"][idx];
+                    csv.push(new google.maps.LatLng(row["lat"], row["lon"]))
+                }
+            } else {
+                var max = results["data"][0]["weight"];
+                _maxk = results["data"][0]["interval"];
+                _mink = results["data"][0]["interval"];
+                _mink = results["data"][0]["interval"];
+                for (idx in results["data"]) {
+                    var row = results["data"][idx];
+                    max = Math.max(max, row["weight"]);
+                    _maxk = Math.max(_maxk, row["interval"]);
+
+                    _mink = Math.min(_mink, row["interval"]);
+                    var _h = row["interval"]
+                    if (_h in mainMap) {
+                        mainMap[_h].push({
+                            location: new google.maps.LatLng(row["lat"], row["lon"]),
+                            weight: row["weight"]
+                        });
+                    } else {
+                        mainMap[_h] = [];
+                        dataArray[_h] = [];
+                        dataArray[_h].push(_h);
+                        dataIndex.push(_h);
+                        mainMap[_h].push({
+                            location: new google.maps.LatLng(row["lat"], row["lon"]),
+                            weight: row["weight"]
+                        });
+                    }
+                }
+            }
+            loadHeatmap(mainMap[_mink]);
+        }
+    });
 }
 
 function toggleHeatmap() {
-  heatmap.setMap(heatmap.getMap() ? null : map);
+    heatmap.setMap(heatmap.getMap() ? null : map);
+  }
+  
+function initialize() {
+    var mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng(1.364917, 103.822872)
+    };
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
 }
 
-function changeGradient() {
-  const gradient = [
-    "rgba(0, 255, 255, 0)",
-    "rgba(0, 255, 255, 1)",
-    "rgba(0, 191, 255, 1)",
-    "rgba(0, 127, 255, 1)",
-    "rgba(0, 63, 255, 1)",
-    "rgba(0, 0, 255, 1)",
-    "rgba(0, 0, 223, 1)",
-    "rgba(0, 0, 191, 1)",
-    "rgba(0, 0, 159, 1)",
-    "rgba(0, 0, 127, 1)",
-    "rgba(63, 0, 91, 1)",
-    "rgba(127, 0, 63, 1)",
-    "rgba(191, 0, 31, 1)",
-    "rgba(255, 0, 0, 1)",
-  ];
-  heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
+function setOptions() {
+    heatmap.set('opacity', opacity / 100);
+    heatmap.set('radius', radius);
 }
 
-function changeRadius() {
-  heatmap.set("radius", heatmap.get("radius") ? null : 50);
-}
+function loadHeatmap(csv) {
+    var pointArray = new google.maps.MVCArray(csv);
 
-function changeOpacity() {
-  heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
-}
+    if (heatmap) heatmap.setMap(null);
 
-// Heatmap data: 500 Points
-function getPoints() {
-  return [
-    {location: new google.maps.LatLng(1.314917, 103.822872), weight: 5},
-    {location: new google.maps.LatLng(1.324917, 103.857872), weight: 4},
-    {location: new google.maps.LatLng(1.354917, 103.522872), weight: 6},
-    {location: new google.maps.LatLng(1.374917, 103.772872), weight: 7},
-    {location: new google.maps.LatLng(1.374917, 103.122872), weight: 5},
-    {location: new google.maps.LatLng(1.374917, 103.222872), weight: 3},
-    {location: new google.maps.LatLng(1.374917, 103.322872), weight: 2},
-    {location: new google.maps.LatLng(1.314917, 103.422872), weight: 9},
-    {location: new google.maps.LatLng(1.355917, 103.622872), weight: 2},
-    {location: new google.maps.LatLng(1.332917, 103.644873), weight: 3},
-    new google.maps.LatLng(1.364917, 103.822872),
-    new google.maps.LatLng(1.334917, 103.822872),
-    new google.maps.LatLng(1.324917, 103.812872),
-    new google.maps.LatLng(1.384917, 103.812872),
-    new google.maps.LatLng(1.374917, 103.822872),
-    new google.maps.LatLng(1.364917, 103.836872),
-    new google.maps.LatLng(1.356917, 103.76872),
-    new google.maps.LatLng(1.354917, 103.845872),
-  ];
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: pointArray,
+        radius: $("#radius-slider").slider("value"),
+        opacity: $("#opacity-slider").slider("value")
+    });
+
+    heatmap.setMap(map);
+    setOptions();
 }

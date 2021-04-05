@@ -1,37 +1,40 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       #map {
-        height: 100%;
-      }
-      
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      
-      #floating-panel {
-        position: absolute;
-        top: 100px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      
-      #floating-panel {
-        background-color: #fff;
-        border: 1px solid #999;
-        left: 35%;
-        padding: 5px;
-        position: absolute;
-        top: 10px;
-        z-index: 5;
-      }
+html, body, #map-canvas {
+    height: 97%;
+    width: 90%;
+    left: 350px;
+    margin: 0px;
+    padding: 10px;
+}
+
+#draggable {
+    background-color: rgb(255, 255, 255); 
+    width: 175px;
+    padding: 15px;
+    position:absolute;
+			top: 120px;
+			left:380px;
+		}
+
+		#radius-label, #opacity-label {
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider {
+			width:170px;
+			margin-top: 10px;
+		}
+
+		#radius-label, #opacity-label{
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider{
+			width:170px;
+			margin-top: 10px;
+		}
+
+		#radius-slider .ui-slider-handle, 
+		#opacity-slider .ui-slider-handle
+		{
+			cursor:pointer;
+		}
