@@ -3,16 +3,16 @@
     width: 100%;
     /* left: 350px; */
     margin: 0px;
-    padding: 400px;
+    padding: 350px;
 }
 
 #draggable {
-    background-color: rgb(200, 200, 255); 
-    width: 175px;
+    background-color: rgb(255, 255, 255); 
+    width: 230px;
     padding: 15px;
     position:absolute;
-			top: 120px;
-			left:380px;
+			top: 200px;
+			left:30px;
 		}
 
 		#radius-label, #opacity-label {
@@ -20,7 +20,7 @@
 		}
 
 		#radius-slider, #opacity-slider {
-			width:170px;
+			width:200px;
 			margin-top: 10px;
 		}
 
@@ -29,7 +29,7 @@
 		}
 
 		#radius-slider, #opacity-slider{
-			width:170px;
+			width:200px;
 			margin-top: 10px;
 		}
 

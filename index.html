@@ -38,7 +38,6 @@
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-
             <li class="active ">
               <a href="./index.html">
                 <i class="nc-icon nc-tile-56"></i>
@@ -86,7 +85,10 @@
                   <div class="row">
                     <div class="col-lg-7">
                       <div class="table-responsive ">
-                        <h2 class="title-7 m-b-40">Close Contacts</h2>
+                        <div class="card-header">
+                          <h3>Potential Close Contacts</h3>
+                          <br/>
+                        </div>
                         <ul class="nav nav-tabs" role="tablist">
                           <li role="presentation" class="active">
                             <a href="#tab-table1" role="tab" data-toggle="tab">Safe Entry Potential Data</a>
@@ -111,17 +113,50 @@
               <div class="card">
                 <div class="container-fluid">
                   <div class="row">
+                    <div class="col-lg-4">
+                      <div class="table-responsive ">
+                        <div class="card-header">
+                          <h3>Infected's Close Contact</h3>
+                          <br/>
+                        </div>
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li role="presentation" class="active">
+                            <a href="#tab-table2" role="tab" data-toggle="tab">First Degree Contacts</a>
+                          </li>
+                          <li role="presentation">
+                            <a href="#tab-table3" role="tab" data-toggle="tab">Second Degree Contacts</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content">
+                          <div role="tabpanel" class="tab-pane active" id="tab-table2">
+                            <div id='direct-data'></div>
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="tab-table3">
+                            <div id='indirect-data'></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="container-fluid">
+                  <div class="row">
                     <div class="col-lg-10">
                       <div class="table-responsive ">
                         <div class="float-container">
-                          <h2>Nodes</h2>
-
-                          <div class="float-left">
-
+                          <div class="card-header ">
                             <h3>Infected Nodes</h3>
+                            <br/>
+                          </div>
                             <img src="DataStructuresandAlgorithms/SEOutput/graph.png" width="500" height="300" alt="">
 
-                          </div>
                           <br />
                         </div>
                       </div>
@@ -131,6 +166,7 @@
               </div>
             </div>
           </div>
+        </div>
 
           <!-- /.container -->
 
@@ -160,8 +196,20 @@
                 csv_options: { separator: ',', delimiter: '"' },
                 datatables_options: { "paging": true }
               });
-
-
+              CsvToHtmlTable.init({
+                csv_path: 'Data Sets/Results/86148198_UiFirstDegreeContact.csv',
+                element: 'direct-data',
+                allow_download: true,
+                csv_options: { separator: ',', delimiter: '"' },
+                datatables_options: { "paging": true }
+              });
+              CsvToHtmlTable.init({
+                csv_path: 'Data Sets/Results/86148198_UisecondDegreeContact.csv',
+                element: 'indirect-data',
+                allow_download: true,
+                csv_options: { separator: ',', delimiter: '"' },
+                datatables_options: { "paging": true }
+              });
             </script>
 
 
