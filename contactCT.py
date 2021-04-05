@@ -129,7 +129,7 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
                 newHash.put(str(data[i][0]),str(data[i][r]))
 
     root = Path("Data Sets/Results/")
-    fileName = str(infected_phoneNo) + "_SecondDegreeContact.csv"
+    fileName = str(infected_phoneNo) + "_secondDegreeContact.csv"
     directory = root / fileName
     newHash.printHashMap()
     newHash.writeToCsv(newHash, directory)
@@ -154,7 +154,7 @@ def uiFormating(infected_phoneNo, deg):
     if deg == 1:
         fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
     elif deg ==2:
-        fileName = str(infected_phoneNo) + "_SecondDegreeContact.csv"
+        fileName = str(infected_phoneNo) + "_secondDegreeContact.csv"
 
     directory = root / fileName
     try:
