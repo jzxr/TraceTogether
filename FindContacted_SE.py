@@ -1,7 +1,7 @@
 import csv
 import os
 import datetime
-from DataStructuresandAlgorithms.SeperateChaining import newHash
+from DataStructuresandAlgorithms.HashMap import newHash
 import pathlib
 
 #################### First Degree Contact Code ############################
@@ -18,32 +18,32 @@ def selectInfected(infectedperson, flag):
     root = pathlib.Path("Data Sets/Safe Entry/")
     infectedperson_file = infectedperson + "_SE.csv"
     directory = root / infectedperson_file
-    try:
-        with open(directory, mode='r') as csv_file:
-            csv_read = csv.DictReader(csv_file)
-            for row in csv_read:
-                # Reformat and Stores all infected person information in arrays
-                infected_checkin_date = datetime.datetime.strptime(row["Check-in date"], "%d/%m/%Y")
-                check_in_date_arr.append(infected_checkin_date)
-                check_in_location_arr.append(row["Check-in location"])
-                infected_checkin_time = datetime.datetime.strptime(row["Check-in time"], "%H%M")
-                check_in_time_arr.append(infected_checkin_time)
-                infected_checkout_time = datetime.datetime.strptime(row["Check-in time"], "%H%M")
-                check_out_time_arr.append(infected_checkout_time)
-                if flag is True:
-                    infectedperson_arr.append(infectedperson)
-                else:
-                    first_degree_person1.append(row["Phone Number Check in"])
-                    first_degree_person2.append(row["Phone Number Check Out"])
+    print(directory)
+    with open(directory, mode='r') as csv_file:
+        csv_read = csv.DictReader(csv_file)
+        for row in csv_read:
+            # Reformat and Stores all infected person information in arrays
+            infected_checkin_date = datetime.datetime.strptime(row["Check-in date"], "%d/%m/%Y")
+            check_in_date_arr.append(infected_checkin_date)
+            check_in_location_arr.append(row["Check-in location"])
+            infected_checkin_time = datetime.datetime.strptime(row["Check-in time"], "%H%M")
+            check_in_time_arr.append(infected_checkin_time)
+            infected_checkout_time = datetime.datetime.strptime(row["Check-in time"], "%H%M")
+            check_out_time_arr.append(infected_checkout_time)
 
-        if flag is True:
-            arr = [check_in_date_arr, check_in_location_arr, check_in_time_arr, check_out_time_arr, infectedperson_arr]
-            return arr
-        else:
-            arr = [check_in_date_arr, check_in_location_arr, check_in_time_arr, check_out_time_arr, first_degree_person1, first_degree_person2]
-            return arr
-    except Exception as e:
-        print(e)
+            #print(check_in_date_arr)
+            if flag is True:
+                infectedperson_arr.append(infectedperson)
+            else:
+                first_degree_person1.append(row["Phone Number Check in"])
+                first_degree_person2.append(row["Phone Number Check Out"])
+
+    if flag is True:
+        arr = [check_in_date_arr, check_in_location_arr, check_in_time_arr, check_out_time_arr, infectedperson_arr]
+        return arr
+    else:
+        arr = [check_in_date_arr, check_in_location_arr, check_in_time_arr, check_out_time_arr, first_degree_person1, first_degree_person2]
+        return arr
 
 
 def SearchContacted(parentNode, arr, newHash, flag):
@@ -133,7 +133,7 @@ def SearchContacted(parentNode, arr, newHash, flag):
                         file_exists = os.path.isfile(directory)
                         with open(directory, "a") as csv_file:
                             headers = ['Check-in date', 'Check-in location', 'Check-in time', 'Check-out time', 'Phone Number Check in', 'Phone Number Check Out']
-                            data_writer = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+                            data_writer = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator = "\n")
 
                             if not file_exists:
                                 data_writer.writerow(headers)
@@ -153,7 +153,7 @@ def writeToCsv(newHash, filename, color):
     root = pathlib.Path("Data Sets/Results/")
     directory = root / filename
     with open(directory, mode='w') as data_file:
-        data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator = "\n")
         for i in range(len(newHash.st)):
             newList = list()
             temp = newHash.st[i]
@@ -199,17 +199,15 @@ def SearchSecondDegree():
     arr = selectInfected("SecondDegreeRange", False)
     SearchContacted(None, arr, newHash, False)
 
-def WriteSecondDegreeToCsv(newHash):
-    writeToCsv(newHash, "SecondDegree_SE.csv", "Yellow")
+def WriteSecondDegreeToCsv(newHash, infectedperson):
+    writeToCsv(newHash, infectedperson + "_SecondDegree_SE.csv", "Yellow")
 
 def reset():
     os.remove("./Data Sets/Safe Entry/SecondDegreeRange_SE.csv")
 
 
 
-def main(infectedperson):
-
-    infectedperson = "86148198"
+def findContactSE(infectedperson):
     if len(infectedperson) != 8:
         print("Invalid phone number")
     else:
@@ -223,13 +221,9 @@ def main(infectedperson):
 
     # Indirect Contact
     SearchSecondDegree()
-    WriteSecondDegreeToCsv(newHash)
+    WriteSecondDegreeToCsv(newHash, infectedperson)
     newHash.printHashMap()
 
     CsvForHtml(newHash, infectedperson)
 
     reset()
-
-
-infectedperson = "86148198"
-main(infectedperson)

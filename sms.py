@@ -105,5 +105,3 @@ def sendSHN_Notice():
     secondContactQueue = bstQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
     actuallySendSMS("+6500000000")
-
-sendSHN_Notice()
