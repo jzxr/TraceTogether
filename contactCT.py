@@ -123,16 +123,28 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
         except Exception as e:
             print(e)
         
-        for i in range(0,len(data)):
-            print(str(data[i][0]))
-            for r in range(1,len(data[i])):
-                Hmap.put(str(data[i][0]),str(data[i][r]))
+    #     for i in range(0,len(data)):
+    #         print(str(data[i][0]))
+    #         for r in range(1,len(data[i])):
+    #             Hmap.put(str(data[i][0]),str(data[i][r]))
 
-    Hmap.print()
+    # Hmap.print()
 
 
     #To add hash map to merge the data.
-            
+
+#Create a csv with numbers where TT data needs to be taken from users.
+def getTTdata(infected_phoneNo, data_CT_False):
+    root = Path("Data Sets/Results/")
+    fileName = str(infected_phoneNo) + "_getTTofCT.csv"
+    directory = root / fileName
+    try:
+        writer =csv.writer(open(directory, "w"), delimiter = ",",  lineterminator = "\n")
+        writer.writerow(data_CT_False)
+    except Exception as e:
+        print(e)
+
+#Format CSV to Ui requriments
 def uiFormating(infected_phoneNo, deg):
     data = []
     root = Path("Data Sets/Results/")
@@ -140,7 +152,7 @@ def uiFormating(infected_phoneNo, deg):
     if deg == 1:
         fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
     elif deg ==2:
-        pass
+        fileName = str(infected_phoneNo) + "_secondDegreeContact.csv"
 
     directory = root / fileName
     try:
@@ -155,7 +167,8 @@ def uiFormating(infected_phoneNo, deg):
     if deg ==1:
         fileName = str(infected_phoneNo) + "_UiFirstDegreeContact.csv"
     elif deg ==2:
-        pass
+        fileName = str(infected_phoneNo) + "_UisecondDegreeContact.csv"
+
 
     directory = root / fileName
     #format to Ui requriments.
@@ -173,17 +186,28 @@ def uiFormating(infected_phoneNo, deg):
     except Exception as e:
         print(e)
 
-    
+#Just call this for results of first degree and second degree. 
+def contactCT(infected_phoneNo,infectionDate, days):
+    firstDegreeCT(infected_phoneNo,infectionDate,days)
+    data_CT_True, data_CT_False = secondDegreeCTExist(infected_phoneNo)
 
-firstDegreeCT(86148198,"13/2/2021",14)
-data_CT_True, data_CT_False = secondDegreeCTExist(86148198)
+    #Remove Duplicated numbers using binary search tree.
+    newTree1 = BST()
+    for i in data_CT_True:
+        newTree1.put(str(i))
 
-#Remove Duplicated numbers using binary search tree.
-newTree = BST()
-for i in data_CT_True:
-    newTree.put(str(i))
+    data_CT_True = newTree1.inOrder()
 
-data_CT_True = newTree.inOrder()
-secondDegreeCT(86148198, "13/2/2021", data_CT_True)
-mergeSecondDegreeCT(86148198, data_CT_True)
-uiFormating(86148198,1)
+    newTree2 = BST()
+    for i in data_CT_False:
+        newTree2.put(str(i))
+
+    data_CT_False = newTree2.inOrder()
+
+    secondDegreeCT(infected_phoneNo, infectionDate, data_CT_True)
+    mergeSecondDegreeCT(infected_phoneNo, data_CT_True)
+    uiFormating(infected_phoneNo,1)
+    #uiFormating(infected_phoneNo,2)
+    getTTdata(infected_phoneNo,data_CT_False)
+
+contactCT(86148198, "13/2/2021", 14)
