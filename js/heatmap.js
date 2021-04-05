@@ -19,27 +19,27 @@ function handleFileSelect(evt) {
         dynamicTyping: true,
         complete: function (results) {
             csv = [];
-            if (results.meta.fields.indexOf("weight") == -1) {
+            if (results.meta.fields.indexOf("Weight") == -1) {
                 for (idx in results["data"]) {
                     var row = results["data"][idx];
-                    csv.push(new google.maps.LatLng(row["lat"], row["lon"]))
+                    csv.push(new google.maps.LatLng(row["Latitute"], row["Longtitute"]))
                 }
             } else {
-                var max = results["data"][0]["weight"];
-                _maxk = results["data"][0]["interval"];
-                _mink = results["data"][0]["interval"];
-                _mink = results["data"][0]["interval"];
+                var max = results["data"][0]["Weight"];
+                _maxk = results["data"][0]["Interval"];
+                _mink = results["data"][0]["Interval"];
+                _mink = results["data"][0]["Interval"];
                 for (idx in results["data"]) {
                     var row = results["data"][idx];
-                    max = Math.max(max, row["weight"]);
-                    _maxk = Math.max(_maxk, row["interval"]);
+                    max = Math.max(max, row["Weight"]);
+                    _maxk = Math.max(_maxk, row["Interval"]);
 
-                    _mink = Math.min(_mink, row["interval"]);
-                    var _h = row["interval"]
+                    _mink = Math.min(_mink, row["Interval"]);
+                    var _h = row["Interval"]
                     if (_h in mainMap) {
                         mainMap[_h].push({
-                            location: new google.maps.LatLng(row["lat"], row["lon"]),
-                            weight: row["weight"]
+                            location: new google.maps.LatLng(row["Latitute"], row["Longtitute"]),
+                            weight: row["Weight"]
                         });
                     } else {
                         mainMap[_h] = [];
@@ -47,8 +47,8 @@ function handleFileSelect(evt) {
                         dataArray[_h].push(_h);
                         dataIndex.push(_h);
                         mainMap[_h].push({
-                            location: new google.maps.LatLng(row["lat"], row["lon"]),
-                            weight: row["weight"]
+                            location: new google.maps.LatLng(row["Latitute"], row["Longtitute"]),
+                            weight: row["Weight"]
                         });
                     }
                 }
@@ -61,7 +61,7 @@ function handleFileSelect(evt) {
 function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
   }
-  
+
 function initialize() {
     var mapOptions = {
         zoom: 12,
