@@ -3,8 +3,7 @@ import csv, os
 from pathlib import Path
 from itertools import chain
 from DataStructuresandAlgorithms.BST import BST
-from DataStructuresandAlgorithms.SeperateChaining import SeperateChainingST
-from DataStructuresandAlgorithms.HashMap import HashMap
+from DataStructuresandAlgorithms.SeperateChaining import HashMap
 
 #Create a CSV of first Degree Contact.
 def firstDegreeCT(infected_phoneNo, infectionDate, days):
@@ -108,8 +107,9 @@ def secondDegreeCT(infected_phoneNo, infectionDate, data_CT_True):
         dst = root / fileName
         os.replace(src, dst)
 
+#Create Second Degree CSV using HashMap
 def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
-    Hmap = SeperateChainingST()
+    newHash = HashMap()
     for i in data_CT_True:
         data = []
         root = Path("Data Sets/Results/")
@@ -123,15 +123,17 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
         except Exception as e:
             print(e)
         
-    #     for i in range(0,len(data)):
-    #         print(str(data[i][0]))
-    #         for r in range(1,len(data[i])):
-    #             Hmap.put(str(data[i][0]),str(data[i][r]))
+        for i in range(0,len(data)):
+            #print(str(data[i][0]))
+            for r in range(1,len(data[i])):
+                newHash.put(str(data[i][0]),str(data[i][r]))
 
-    # Hmap.print()
+    root = Path("Data Sets/Results/")
+    fileName = str(infected_phoneNo) + "_SecondDegreeContact.csv"
+    directory = root / fileName
+    newHash.printHashMap()
+    newHash.writeToCsv(newHash, directory)
 
-
-    #To add hash map to merge the data.
 
 #Create a csv with numbers where TT data needs to be taken from users.
 def getTTdata(infected_phoneNo, data_CT_False):
@@ -152,7 +154,7 @@ def uiFormating(infected_phoneNo, deg):
     if deg == 1:
         fileName = str(infected_phoneNo) + "_firstDegreeContact.csv"
     elif deg ==2:
-        fileName = str(infected_phoneNo) + "_secondDegreeContact.csv"
+        fileName = str(infected_phoneNo) + "_SecondDegreeContact.csv"
 
     directory = root / fileName
     try:
@@ -207,7 +209,9 @@ def contactCT(infected_phoneNo,infectionDate, days):
     secondDegreeCT(infected_phoneNo, infectionDate, data_CT_True)
     mergeSecondDegreeCT(infected_phoneNo, data_CT_True)
     uiFormating(infected_phoneNo,1)
-    #uiFormating(infected_phoneNo,2)
+    uiFormating(infected_phoneNo,2)
     getTTdata(infected_phoneNo,data_CT_False)
+
+
 
 contactCT(86148198, "13/2/2021", 14)
