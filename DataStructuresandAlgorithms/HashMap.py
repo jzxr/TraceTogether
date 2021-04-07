@@ -102,4 +102,4 @@ class HashMap:
                 temp = temp.next
             print()
 
-newHash = HashMap()
+newHashLinkedList = HashMap()

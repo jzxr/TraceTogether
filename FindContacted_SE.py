@@ -1,7 +1,7 @@
 import csv
 import os
 import datetime
-from DataStructuresandAlgorithms.HashMapwAVL import newHash
+from DataStructuresandAlgorithms.HashMapwAVL import HashMap
 import pathlib
 
 #################### First Degree Contact Code ############################
@@ -46,7 +46,7 @@ def selectInfected(infectedperson, flag):
         return arr
 
 
-def SearchContacted(parentNode, arr, newHash, flag):
+def SearchContacted(parentNode, arr, newHashAVL, flag):
     root_dir = str(pathlib.Path().absolute()) + "/Data Sets/Location SE Data/"
     for root, dirs, files in os.walk(root_dir, onerror=None):
         # Get filename within the root_dir
@@ -96,15 +96,15 @@ def SearchContacted(parentNode, arr, newHash, flag):
                                         # Check whether its first degree contact or 2nd degree
                                         # Needs editing here
                                         if flag is True:
-                                            newHash.put(normal_checkin_date, row["Phone No."], location, arr[4][i], "Orange")
+                                            newHashAVL.put(normal_checkin_date, row["Phone No."], location, arr[4][i], "Orange")
                                         else:
                                             # Determine the 1st degree person
                                             check_in_value = abs(arr[2][i] - normal_checkin_time)
                                             check_out_value = abs(arr[3][i] - normal_checkout_time)
                                             if check_in_value < check_out_value:
-                                                newHash.put(normal_checkin_date, row["Phone No."], location, arr[4][i] ,"Yellow")
+                                                newHashAVL.put(normal_checkin_date, row["Phone No."], location, arr[4][i] ,"Yellow")
                                             else:
-                                                newHash.put(normal_checkin_date, row["Phone No."], location, arr[5][i] ,"Yellow")
+                                                newHashAVL.put(normal_checkin_date, row["Phone No."], location, arr[5][i] ,"Yellow")
 
                                         # Logic to get checkindate, general range of 2nd degree contact 
                                         if seconddegree_checkin_date is None:
@@ -149,14 +149,14 @@ def SearchContacted(parentNode, arr, newHash, flag):
                     #     print(e)
 
 # Write HashMap to Csv
-def writeToCsvLinkedList(newHash, filename, color):
+def writeToCsvLinkedList(newHashAVL, filename, color):
     root = pathlib.Path("Data Sets/Results/")
     directory = root / filename
     with open(directory, mode='w') as data_file:
         data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator = "\n")
-        for i in range(len(newHash.st)):
+        for i in range(len(newHashAVL.st)):
             newList = list()
-            temp = newHash.st[i]
+            temp = newHashAVL.st[i]
             if temp == None:
                 continue
             else:
@@ -165,23 +165,32 @@ def writeToCsvLinkedList(newHash, filename, color):
                         newList.append(temp.value)
                     temp = temp.next
                 # Get Date of the Hash Map
-                newList.insert(0, str(newHash.st[i].key).split(" ")[0])
+                newList.insert(0, str(newHashAVL.st[i].key).split(" ")[0])
                 data_writer.writerow(newList)
 
-def writeToCsvAVL(newHash, filename, color):
+def writeToCsvAVL(newHashAVL, filename, color):
     root = pathlib.Path("Data Sets/Results/")
     directory = root / filename
     with open(directory, mode='w') as data_file:
         data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator = "\n")
-        for i in range(len(newHash.st)):
-            if newHash.st[i] is None:
+        for i in range(len(newHashAVL.st)):
+            if newHashAVL.st[i] is None:
                 continue
             else:
-                contactedlist = newHash.inOrder(newHash.st[i])
-                contactedlist.insert(0, str(newHash.st[i].key).split(" ")[0])
+                contactedlist = writeToCsvAVL2(newHashAVL.st[i], color)
+                contactedlist.insert(0, str(newHashAVL.st[i].key).split(" ")[0])
                 data_writer.writerow(contactedlist)
-        
-def CsvForHtmlAVL(newHash, infectedperson):
+
+def writeToCsvAVL2(node, color):
+    arr = []
+    if node:
+        arr += writeToCsvAVL2(node.left, color)
+        if node.color == color:
+            arr.append(node.value) 
+        arr += writeToCsvAVL2(node.right, color)
+    return arr
+
+def CsvForHtmlAVL(newHashAVL, infectedperson):
     root = pathlib.Path("Data Sets/Results/")
     filename = "WriteToHtml.csv"
     directory = root / filename
@@ -193,25 +202,25 @@ def CsvForHtmlAVL(newHash, infectedperson):
         if not file_exists:
             data_writer.writerow(headers)
 
-        for i in range(len(newHash.st)):
-            if newHash.st[i] is None:
+        for i in range(len(newHashAVL.st)):
+            if newHashAVL.st[i] is None:
                 continue
             else:
-                CsvForHtmlAVL2(newHash.st[i], newHash, infectedperson, data_writer)
+                CsvForHtmlAVL2(newHashAVL.st[i], newHashAVL, infectedperson, data_writer)
 
-def CsvForHtmlAVL2(node, newHash, infectedperson, data_writer):
+def CsvForHtmlAVL2(node, newHashAVL, infectedperson, data_writer):
     if node:
-        CsvForHtmlAVL2(node.left, newHash, infectedperson, data_writer)
+        CsvForHtmlAVL2(node.left, newHashAVL, infectedperson, data_writer)
 
         if node.parentNode is infectedperson:
             data_writer.writerow([str(node.key).split(' ')[0], node.value, node.location, "First Degree"])
         else:
             data_writer.writerow([str(node.key).split(' ')[0], node.value, node.location, "Second Degree"])
 
-        CsvForHtmlAVL2(node.right, newHash, infectedperson, data_writer)
+        CsvForHtmlAVL2(node.right, newHashAVL, infectedperson, data_writer)
 
 # Write to CSV to be used for HeatMap and Website Table
-def CsvForHtmlLinkedList(newHash, infectedperson):
+def CsvForHtmlLinkedList(newHashAVL, infectedperson):
     filename = "WriteToHtml.csv"
     file_exists = os.path.isfile(filename)
     with open(filename, mode='w') as data_file:
@@ -221,9 +230,9 @@ def CsvForHtmlLinkedList(newHash, infectedperson):
         if not file_exists:
             data_writer.writerow(headers)
         
-        for i in range(len(newHash.st)):
+        for i in range(len(newHashAVL.st)):
             newList = list()
-            temp = newHash.st[i]
+            temp = newHashAVL.st[i]
             if temp == None:
                 continue
             else:
@@ -237,37 +246,40 @@ def CsvForHtmlLinkedList(newHash, infectedperson):
 
 #################### Second Degree Contact Code ############################
 
-def SearchSecondDegree():
+def SearchSecondDegree(newHashAVL):
     arr = selectInfected("SecondDegreeRange", False)
-    SearchContacted(None, arr, newHash, False)
+    SearchContacted(None, arr, newHashAVL, False)
 
-def WriteSecondDegreeToCsv(newHash, infectedperson):
+def WriteSecondDegreeToCsv(newHashAVL, infectedperson):
     #Linked List Implemenetation
-    writeToCsvAVL(newHash, infectedperson + "_SecondDegree_SE.csv", "Yellow")
+    writeToCsvAVL(newHashAVL, infectedperson + "_SecondDegree_SE.csv", "Yellow")
 
 def reset():
     os.remove("./Data Sets/Safe Entry/SecondDegreeRange_SE.csv")
 
+def findContactSE(infectedperson, infectionDate, daterange):
 
+    newHashAVL = HashMap(infectionDate, daterange)
 
-def findContactSE(infectedperson):
     if len(infectedperson) != 8:
         print("Invalid phone number")
     else:
         # Step2. Get Check in and Check out from Infected person
         arr = selectInfected(infectedperson, True)
         # Step 3. Search for people who enter mall within the time range of infected person
-        SearchContacted(infectedperson, arr, newHash, True)
+        SearchContacted(infectedperson, arr, newHashAVL, True)
         # Step 4. Write Result to csv 
         #Linked List Implemenetation
-        writeToCsvAVL(newHash, infectedperson + "_FirstDegree_SE.csv", "Orange")
+        writeToCsvAVL(newHashAVL, infectedperson + "_FirstDegree_SE.csv", "Orange")
 
 
-    # Indirect Contact
-    SearchSecondDegree()
-    WriteSecondDegreeToCsv(newHash, infectedperson)
-    newHash.printAVLTree()
+        # Indirect Contact
+        SearchSecondDegree(newHashAVL)
+        WriteSecondDegreeToCsv(newHashAVL, infectedperson)
+        newHashAVL.printAVLTree()
 
-    CsvForHtmlAVL(newHash, infectedperson)
+        CsvForHtmlAVL(newHashAVL, infectedperson)
 
-    reset()
+        reset()
+
+    return newHashAVL

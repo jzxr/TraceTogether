@@ -15,11 +15,11 @@ def main():
 
         #Create CSV of close contact and second contact.
         contactCT(infected_phoneNo,infectionDate,14)
-        findContactSE(infected_phoneNo)
+        newHashAVL = findContactSE(infected_phoneNo, infectionDate, 14)
 
         #Send SHN Notice and infection vector graph.
         sendSHN_Notice(infected_phoneNo, 00000000)
-        infectedPlot(infected_phoneNo)
+        infectedPlot(infected_phoneNo, newHashAVL)
 
 if __name__ == "__main__":
     main()

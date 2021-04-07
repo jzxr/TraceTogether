@@ -28,18 +28,20 @@ class Node:
 
 class HashMap:
     # Date Range: 20/1/2021 to 13/2/21
-    dateBase = datetime.datetime(2021,2,13)
     dateRange = list()
 
-    def __init__(self):
+    def __init__(self, infectionDate, daterange):
         # Size is 25; cause storing contact tracing for 25 days
-        self.size = 25
+        self.size = daterange
         # Flag for Probing of Date
         self.flag = [False for x in range(self.size)]
         # ??? 
         self.key = dict()
         # Array for storing Dates
         self.st = [None for x in range(self.size)]
+
+        self.dateBase = datetime.datetime.strptime(infectionDate, '%d/%m/%Y').date()
+
         self.collectionofDates()
         # Set keys for HashMap for the 25 days
         self.setKey()
@@ -47,7 +49,7 @@ class HashMap:
     # Get Date Range: 20/1/2021 to 13/2/21
     def collectionofDates(self):
         for i in range(self.size):
-            newDate = HashMap.dateBase - datetime.timedelta(days=i)
+            newDate = self.dateBase - datetime.timedelta(days=i)
             HashMap.dateRange.append(int(newDate.strftime('%d%m%Y')))
 
     def setKey(self):
@@ -168,12 +170,10 @@ class HashMap:
 
         for i in range(len(self.st)):
             print(key_list[val_list.index(i)], end=": ")
-            if newHash.st[i] is None:
+            if self.st[i] is None:
                 print("None")
             else:
-                contactedlist = newHash.inOrder(self.st[i])
+                contactedlist = self.inOrder(self.st[i])
                 print(contactedlist)
 
-    
 
-newHash = HashMap()

@@ -3,15 +3,14 @@ import networkx as nx
 import csv
 from pathlib import Path
 from itertools import chain
-from FindContacted_SE import newHash
 
-def createNodes_Edge_First(graph, infectedNumber):
-    key_list = list(newHash.key.keys())
-    val_list = list(newHash.key.values())
+def createNodes_Edge_First(graph, infectedNumber, newHashAVL):
+    key_list = list(newHashAVL.key.keys())
+    val_list = list(newHashAVL.key.values())
     
-    for i in range(len(newHash.st)):
+    for i in range(len(newHashAVL.st)):
         
-        createNodes_Edge_First2(newHash.st[i], graph, infectedNumber)
+        createNodes_Edge_First2(newHashAVL.st[i], graph, infectedNumber)
 
 def createNodes_Edge_First2(node, graph, infectedNumber):
     if node:
@@ -38,14 +37,14 @@ def createColorNodes(graph, infectedNumber):
     return color_map
         
 
-def infectedPlot(infectedNumber):
+def infectedPlot(infectedNumber, newHashAVL):
     graph = nx.Graph()
 
-    createNodes_Edge_First(graph, infectedNumber)
+    createNodes_Edge_First(graph, infectedNumber, newHashAVL)
 
     graph.add_node(infectedNumber, color= "red")
 
     color_map = createColorNodes(graph, infectedNumber)
     nx.draw(graph, node_color=color_map, with_labels=False)
     plt.savefig("graph.png", format= "png")
-    #plt.show()
+    plt.show()
