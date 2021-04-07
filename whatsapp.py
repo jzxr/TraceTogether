@@ -54,6 +54,7 @@ def is_connected():
 #OS and Chrome Checking.
 platformType = platform.system()
 path = Path(__file__).parent.absolute()
+print(platformType)
 if platformType == "Windows":
     fileName = "chromedriverWin.exe"
 elif platformType == "MacOS":
