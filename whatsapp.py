@@ -57,7 +57,7 @@ path = Path(__file__).parent.absolute()
 print(platformType)
 if platformType == "Windows":
     fileName = "chromedriverWin.exe"
-elif platformType == "MacOS":
+elif platformType == "Darwin":
     fileName = "chromedriverMac"
 
 path = path / fileName
