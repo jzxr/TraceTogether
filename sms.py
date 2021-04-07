@@ -111,3 +111,5 @@ def sendSHN_Notice(infected_phoneNo):
         actuallySendSMS(ActualSend_No)
     except:
         print("No Actual Phone Number")
+
+actuallySendSMS("+6597601182")
