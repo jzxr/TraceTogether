@@ -64,6 +64,7 @@ def avlQueueFirst(infected_phoneNo, deg):
 
     toQueue = ContactAVL.inOrder()
 
+    #Add numbers to Queue
     ContactQueue = Queue()
     for i in toQueue:
         number = "+65" + i
@@ -104,4 +105,5 @@ def sendSHN_Notice():
     firstContactQueue = avlQueueFirst(86148198,1)
     secondContactQueue = avlQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
-    actuallySendSMS("+6500000000")
+    ActualSend_No = "+65" + str(ActualSend_No)
+    actuallySendSMS(ActualSend_No)
