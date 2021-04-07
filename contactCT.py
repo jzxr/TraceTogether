@@ -130,7 +130,6 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
     root = Path("Data Sets/Results/")
     fileName = str(infected_phoneNo) + "_secondDegreeContact.csv"
     directory = root / fileName
-    newHash.printHashMap()
     newHash.writeToCsv(newHash, directory)
 
 #Create a csv with numbers where TT data needs to be taken from users.
