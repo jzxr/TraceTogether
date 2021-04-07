@@ -260,6 +260,10 @@ def findContactSE(infectedperson, infectionDate, daterange):
 
     newHashAVL = HashMap(infectionDate, daterange)
 
+    # print()
+    # newHashAVL.getkeys()
+    # print()
+
     if len(infectedperson) != 8:
         print("Invalid phone number")
     else:

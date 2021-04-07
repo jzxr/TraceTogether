@@ -17,7 +17,6 @@ class Node:
         self.height = 1
 
         self.location = location
-
         self.parentNode = parentNode
         
         # Red: Infected
@@ -55,17 +54,16 @@ class HashMap:
     def setKey(self):
         for i in range(len(HashMap.dateRange)):
             counter = 0
-            while self.flag[(HashMap.dateRange[i] % self.size) + counter] is True:
+            while self.flag[((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size] is True:
                 if ((HashMap.dateRange[i] % self.size) + counter) < self.size - 1:
                     counter += 1
-                else:
-                    counter -= self.size - 1
-            self.key[HashMap.dateRange[i]] = (HashMap.dateRange[i] % self.size) + counter
-            self.flag[(HashMap.dateRange[i] % self.size) + counter] = True
+            self.key[HashMap.dateRange[i]] = ((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size
+            self.flag[((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size] = True
 
     # Get HashMap Keys
     def getkeys(self):
-        return self.key
+        for date, value in self.key.items():
+            print(value,' : ', date)
 
     # Get Key of Date
     def getKey(self, date):
