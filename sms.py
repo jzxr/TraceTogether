@@ -55,7 +55,7 @@ def bstQueueFirst(infected_phoneNo, deg):
     data1 = list(chain.from_iterable(data1))
     data2 = list(chain.from_iterable(data2))
 
-    #Merge and remove duplicates.
+    #Merge and remove duplicates with BST
     ContactBST = BST()
     for i in data1:
         ContactBST.put(str(i))
@@ -64,6 +64,7 @@ def bstQueueFirst(infected_phoneNo, deg):
 
     toQueue = ContactBST.inOrder()
 
+    #Add numbers to Queue
     ContactQueue = Queue()
     for i in toQueue:
         number = "+65" + i
@@ -100,8 +101,9 @@ def actuallySendSMS(phoneNo):
         print(e)
 
 
-def sendSHN_Notice():
-    firstContactQueue = bstQueueFirst(86148198,1)
-    secondContactQueue = bstQueueFirst(86148198,2)
+def sendSHN_Notice(infected_phoneNo, ActualSend_No):
+    firstContactQueue = bstQueueFirst(infected_phoneNo,1)
+    secondContactQueue = bstQueueFirst(infected_phoneNo,2)
     __sendSMS(firstContactQueue,secondContactQueue)
-    actuallySendSMS("+6500000000")
+    ActualSend_No = "+65" + str(ActualSend_No)
+    actuallySendSMS(ActualSend_No)
