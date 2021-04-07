@@ -39,6 +39,7 @@ class LocationADTNode():
     firstDeg = 0
     secondDeg = 0
 
+    #Increase Contact type count.
     def increase(self, ContactType):
         if ContactType == "First Degree":
             self.firstDeg += 1

@@ -80,14 +80,14 @@ def __sendSMS(firstContactQueue, secondContactQueue):
 
     try:
         while firstContactQueue.isEmpty() is False:
-            #send_whatsapp_msg(firstContactQueue.dequeue(), msgList[0]) #This will send commented out to prevent spamming strangers whatsapp.
+            #send_whatsapp_msg(firstContactQueue.dequeue(), msgList[0]) #This will send, commented out to prevent spamming strangers whatsapp.
             firstContactQueue.dequeue() #for testing
     except Exception as e:
         print(e)
     
     try:
         while secondContactQueue.isEmpty() is False:
-            #send_whatsapp_msg(secondContactQueue.dequeue(), msgList[1]) #This will send commented out to prevent spamming strangers whatsapp.
+            #send_whatsapp_msg(secondContactQueue.dequeue(), msgList[1]) #This will send, commented out to prevent spamming strangers whatsapp.
             secondContactQueue.dequeue() #for testing
     except Exception as e:
         print(e)
