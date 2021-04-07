@@ -30,3 +30,6 @@ class Stack:
             return value
         except:
             None
+
+
+            

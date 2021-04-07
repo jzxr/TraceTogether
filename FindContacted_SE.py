@@ -60,7 +60,6 @@ def SearchContacted(parentNode, arr, newHashAVL, flag):
                 if location == arr[1][i]:
                     # Open the location.csv file
                     file_path = os.path.join(root_dir, filename)
-                    #try:
 
                     # Get information to prep for second degree contact tracing
                     firstdegree_phone_number_check_in = None
@@ -144,9 +143,6 @@ def SearchContacted(parentNode, arr, newHashAVL, flag):
                             newList = [seconddegree_checkin_date, location, seconddegree_checkin_time, seconddegree_checkout_time, firstdegree_phone_number_check_in, firstdegree_phone_number_check_out]
                             data_writer.writerow(newList)
 
-                    # except Exception as e:
-                    #     print(e)
-
 # Write HashMap to Csv
 def writeToCsvLinkedList(newHashAVL, filename, color):
     root = pathlib.Path("Data Sets/Results/")
@@ -198,8 +194,7 @@ def CsvForHtmlAVL(newHashAVL, infectedperson):
         headers = ['Date', 'Phone-Number', 'Location', 'Degree Contact']
         data_writer = csv.writer(data_file, delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator = "\n")
 
-        if not file_exists:
-            data_writer.writerow(headers)
+        data_writer.writerow(headers)
 
         for i in range(len(newHashAVL.st)):
             if newHashAVL.st[i] is None:
@@ -259,10 +254,6 @@ def reset():
 def findContactSE(infectedperson, infectionDate, daterange):
 
     newHashAVL = HashMap(infectionDate, daterange)
-
-    # print()
-    # newHashAVL.getkeys()
-    # print()
 
     if len(infectedperson) != 8:
         print("Invalid phone number")

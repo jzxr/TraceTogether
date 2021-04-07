@@ -3,6 +3,7 @@ from sms import sendSHN_Notice
 from FindContacted_SE import findContactSE
 from infectedGraph_SE import infectedPlot
 from clusterTable import createClusterTable
+from dataPrep_HeatMap import data_prep
 #CLI interface
 
 def main():
@@ -37,6 +38,7 @@ def main():
         #Send SHN Notice and infection vector graph.
         sendSHN_Notice(infected_phoneNo)
         infectedPlot(infected_phoneNo, newHashAVL)
+        data_prep()
 
 if __name__ == "__main__":
     main()
