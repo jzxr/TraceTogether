@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="scss/paper-dashboard/_tables.scss">
     <link rel="stylesheet" href="scss/paper-dashboard/_images.scss">
+
     <!-- Map -->
     <link rel="stylesheet" href="css/heatmap.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
@@ -40,7 +41,6 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-
                     <li class="active ">
                         <a href="./index.html">
                             <i class="nc-icon nc-tile-56"></i>
@@ -72,8 +72,10 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <form>
                             <div class="input-group no-border">
+
                             </div>
                         </form>
+
                     </div>
                 </div>
             </nav>
@@ -84,7 +86,7 @@
                         <div class="card ">
                             <div class="card-header ">
                                 <h3>Google Maps</h3>
-                                <br/>
+                                <br />
                             </div>
                             <div class="card-body ">
                                 <div id="map-canvas" class="map"></div>
@@ -98,85 +100,122 @@
 
                                     <div id="opacity-label">Opacity: 0.5</div>
                                     <div id="opacity-slider"></div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-            <footer class="footer footer-black  footer-white ">
-                <div class="container-fluid">
-                    <div class="row">
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="table-responsive ">
+                                            <div class="card-header">
+                                                <h3>Location</h3>
+                                                <br />
+                                            </div>
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <a href="#tab-table1" role="tab" data-toggle="tab">Location Data</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active" id="tab-table1">
+                                                    <div id='potential'></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-    </div>
-    <!-- /.container -->
 
-    <!-- Bootstrap core JavaScript
+
+                <!-- /.container -->
+
+                <!-- Bootstrap core JavaScript
                 ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+                <!-- Placed at the end of the document so the pages load faster -->
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.csv.min.js"></script>
-    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="js/convertcsv.js"></script>
-    
-    <!--Map-->
-    <script type="text/javascript" src="js/heatmap.js"></script>
-	<script src="js/papaparse.min.js"></script>
-	<script src="js/api/APIKey.js"></script>
-	<script src="js/jquery-2.1.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization&key=" + mAPIkey, function () {
-                google.maps.event.addDomListener(window, 'load', initialize);
-            });
-            $("#csv-file").change(handleFileSelect);
 
-            $(function () {
-                $("#draggable").draggable();
-            });
 
-            $(function () {
-                $("#radius-slider").slider({
-                    orientation: "horizontal",
-                    range: "min",
-                    min: 1,
-                    max: 50,
-                    value: 25,
-                    slide: function (event, ui) {
-                        $("#radius-label").html("Radius: " + ui.value);
-                        if (heatmap == null) return;
-                        heatmap.set('radius', ui.value);
-                        radius = ui.value;
+                <!--Map-->
+                <script type="text/javascript" src="js/heatmap.js"></script>
+                <script src="js/papaparse.min.js"></script>
+                <script src="js/api/APIKey.js"></script>
+                <script src="js/jquery-2.1.1.min.js"></script>
+                <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization&key=" + mAPIkey, function () {
+                            google.maps.event.addDomListener(window, 'load', initialize);
+                        });
+                        $("#csv-file").change(handleFileSelect);
+
+                        $(function () {
+                            $("#draggable").draggable();
+                        });
+
+                        $(function () {
+                            $("#radius-slider").slider({
+                                orientation: "horizontal",
+                                range: "min",
+                                min: 1,
+                                max: 50,
+                                value: 25,
+                                slide: function (event, ui) {
+                                    $("#radius-label").html("Radius: " + ui.value);
+                                    if (heatmap == null) return;
+                                    heatmap.set('radius', ui.value);
+                                    radius = ui.value;
+                                }
+                            });
+
+                            $("#opacity-slider").slider({
+                                orientation: "horizontal",
+                                range: "min",
+                                min: 0,
+                                max: 100,
+                                value: 50,
+                                slide: function (event, ui) {
+                                    $("#opacity-label").html("Opacity: " + ui.value / 100);
+                                    if (heatmap == null) return;
+                                    heatmap.set('opacity', ui.value / 100);
+                                    opacity = ui.value;
+                                }
+                            });
+                        });
+                    });
+                </script>
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="js/jquery.csv.min.js"></script>
+                <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+                <script type="text/javascript" src="js/convertcsv.js"></script>
+                <script type="text/javascript">
+                    function format_link(link) {
+                        if (link)
+                            return "<a href='" + link + "' target='_blank'>" + "Link" + "</a>";
+                        else
+                            return "";
                     }
-                });
+                    //Safe-Entry Data
+                    CsvToHtmlTable.init({
+                        csv_path: 'Data Sets/Results/potential.csv',
+                        element: 'potential',
+                        allow_download: true,
+                        csv_options: { separator: ',', delimiter: '"' },
+                        datatables_options: { "paging": true }
+                    });
 
-                $("#opacity-slider").slider({
-                    orientation: "horizontal",
-                    range: "min",
-                    min: 0,
-                    max: 100,
-                    value: 50,
-                    slide: function (event, ui) {
-                        $("#opacity-label").html("Opacity: " + ui.value / 100);
-                        if (heatmap == null) return;
-                        heatmap.set('opacity', ui.value / 100);
-                        opacity = ui.value;
-                    }
-                });
-            });
-        });
-    </script>
-
+                </script>
 </body>
 
 </html>

@@ -1,104 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-      1984 TraceTogether
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-      name='viewport' />
-    <!-- Fonts and icons  -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    1984 TraceTogether
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!-- Fonts and icons  -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link href="css/dataTables.bootstrap.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="scss/paper-dashboard/_tables.scss">
-    <link rel="stylesheet" href="scss/paper-dashboard/_images.scss">
+  <link rel="stylesheet" href="scss/paper-dashboard/_tables.scss">
+  <link rel="stylesheet" href="scss/paper-dashboard/_images.scss">
 
-  </head>
+</head>
 
-  <body class="">
-    <div class="wrapper ">
-      <div class="sidebar" data-color="white" data-active-color="danger">
-        <div class="logo">
-          <a href="" class="simple-text logo-normal">
-            <div class="logo-image-small">
-              <img src="assets/img/1984.png">
-            </div>
-          </a>
-        </div>
-        <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li class="active ">
-              <a href="./index.html">
-                <i class="nc-icon nc-tile-56"></i>
-                <p>Table List</p>
-              </a>
-            </li>
-            <li>
-              <a href="./map.html">
-                <i class="nc-icon nc-pin-3"></i>
-                <p>Maps</p>
-              </a>
-            </li>
-          </ul>
-        </div>
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+          <div class="logo-image-small">
+            <img src="assets/img/1984.png">
+          </div>
+        </a>
       </div>
-      <div class="main-panel">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-          <div class="container-fluid">
-            <div class="navbar-wrapper">
-              <a class="navbar-brand" href="javascript:;">1984 TraceTogether</a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-              aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-bar navbar-kebab"></span>
-              <span class="navbar-toggler-bar navbar-kebab"></span>
-              <span class="navbar-toggler-bar navbar-kebab"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation">
-              <form>
-                <div class="input-group no-border">
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="active ">
+            <a href="./index.html">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li>
+            <a href="./map.html">
+              <i class="nc-icon nc-pin-3"></i>
+              <p>Maps</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">1984 TraceTogether</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form>
+              <div class="input-group no-border">
 
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-7">
+                    <div class="table-responsive ">
+                      <div class="card-header">
+                        <h3>Potential Close Contacts</h3>
+                        <br />
+                      </div>
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                          <a href="#tab-table1" role="tab" data-toggle="tab">Safe Entry Potential Data</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-table1">
+                          <div id='SE-data'></div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </form>
-
+              </div>
             </div>
           </div>
-        </nav>
-        <!-- End Navbar -->
-        <div class="content">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-7">
-                      <div class="table-responsive ">
-                        <div class="card-header">
-                          <h3>Potential Close Contacts</h3>
-                          <br/>
-                        </div>
-                        <ul class="nav nav-tabs" role="tablist">
-                          <li role="presentation" class="active">
-                            <a href="#tab-table1" role="tab" data-toggle="tab">Safe Entry Potential Data</a>
-                          </li>
-                        </ul>
-                        <div class="tab-content">
-                          <div role="tabpanel" class="tab-pane active" id="tab-table1">
-                            <div id='SE-data'></div>
-                          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="table-responsive ">
+                      <div class="card-header">
+                        <h3>Infected's Close Contact</h3>
+                        <br />
+                      </div>
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                          <a href="#tab-table2" role="tab" data-toggle="tab">First Degree Contacts</a>
+                        </li>
+                        <li role="presentation">
+                          <a href="#tab-table3" role="tab" data-toggle="tab">Second Degree Contacts</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-table2">
+                          <div id='direct-data'></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-table3">
+                          <div id='indirect-data'></div>
                         </div>
                       </div>
                     </div>
@@ -107,33 +141,27 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="table-responsive ">
-                        <div class="card-header">
-                          <h3>Infected's Close Contact</h3>
-                          <br/>
-                        </div>
-                        <ul class="nav nav-tabs" role="tablist">
-                          <li role="presentation" class="active">
-                            <a href="#tab-table2" role="tab" data-toggle="tab">First Degree Contacts</a>
-                          </li>
-                          <li role="presentation">
-                            <a href="#tab-table3" role="tab" data-toggle="tab">Second Degree Contacts</a>
-                          </li>
-                        </ul>
-                        <div class="tab-content">
-                          <div role="tabpanel" class="tab-pane active" id="tab-table2">
-                            <div id='direct-data'></div>
-                          </div>
-                          <div role="tabpanel" class="tab-pane" id="tab-table3">
-                            <div id='indirect-data'></div>
-                          </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="table-responsive ">
+                      <div class="card-header">
+                        <h3>Safe Entry & TraceTogether Data</h3>
+                        <br />
+                      </div>
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                          <a href="#tab-table4" role="tab" data-toggle="tab">Missing Data</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-table4">
+                          <div id='missing-data'></div>
                         </div>
                       </div>
                     </div>
@@ -142,28 +170,27 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="table-responsive ">
-                        <div class="card-header">
-                          <h3>Safe Entry & TraceTogether Data</h3>
-                          <br/>
-                        </div>
-                        <ul class="nav nav-tabs" role="tablist">
-                          <li role="presentation" class="active">
-                            <a href="#tab-table4" role="tab" data-toggle="tab">Missing Data</a>
-                          </li>
-                          
-                        </ul>
-                        <div class="tab-content">
-                          <div role="tabpanel" class="tab-pane active" id="tab-table">
-                            <div id='missing-data'></div>
-                          </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="table-responsive ">
+                      <div class="card-header">
+                        <h3>Cluster Location Data</h3>
+                        <br />
+                      </div>
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                          <a href="#tab-table5" role="tab" data-toggle="tab">Cluster Location Data</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-table5">
+                          <div id='cluster-data'></div>
                         </div>
                       </div>
                     </div>
@@ -172,23 +199,22 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-lg-10">
-                      <div class="table-responsive ">
-                        <div class="float-container">
-                          <div class="card-header ">
-                            <h3>Infected Nodes</h3>
-                            <br/>
-                          </div>
-                            <img src="DataStructuresandAlgorithms/SEOutput/graph.png" width="500" height="300" alt="">
-
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div class="table-responsive ">
+                      <div class="float-container">
+                        <div class="card-header ">
+                          <h3>Infected Nodes</h3>
                           <br />
                         </div>
+                        <img src="DataStructuresandAlgorithms/SEOutput/graph.png" width="500" height="300" alt="">
+                        <br />
                       </div>
                     </div>
                   </div>
@@ -197,11 +223,13 @@
             </div>
           </div>
         </div>
+      </div>
 
-          <!-- /.container -->
+      <!-- /.container -->
 
-          <!-- Bootstrap core JavaScript
+      <!-- Bootstrap core JavaScript
                 ================================================== -->
+<<<<<<< Updated upstream
           <!-- Placed at the end of the document so the pages load faster -->
 
             <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -253,3 +281,70 @@
   </body>
 
   </html>
+=======
+      <!-- Placed at the end of the document so the pages load faster -->
+
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.csv.min.js"></script>
+      <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+      <script type="text/javascript" src="js/convertcsv.js"></script>
+
+      <script type="text/javascript">
+        function format_link(link) {
+          if (link)
+            return "<a href='" + link + "' target='_blank'>" + "Link" + "</a>";
+          else
+            return "";
+        }
+        //Safe-Entry Data
+        CsvToHtmlTable.init({
+          csv_path: 'DataStructuresandAlgorithms/SEOutput/WriteToHtml.csv',
+          element: 'SE-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+        CsvToHtmlTable.init({
+          csv_path: 'Data Sets/Results/86148198_UiFirstDegreeContact.csv',
+          element: 'direct-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+        CsvToHtmlTable.init({
+          csv_path: 'Data Sets/Results/86148198_UisecondDegreeContact.csv',
+          element: 'indirect-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+        CsvToHtmlTable.init({
+          csv_path: 'Data Sets/Results/86148198_getTTofCT.csv',
+          element: 'missing-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+        CsvToHtmlTable.init({
+          csv_path: 'Data Sets/Results/ClusterTable.csv',
+          element: 'cluster-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+        CsvToHtmlTable.init({
+          csv_path: 'Data Sets/Results/potential.csv',
+          element: 'potential-data',
+          allow_download: true,
+          csv_options: { separator: ',', delimiter: '"' },
+          datatables_options: { "paging": true }
+        });
+      </script>
+
+
+</body>
+
+</html>
+>>>>>>> Stashed changes
