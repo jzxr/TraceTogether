@@ -58,7 +58,7 @@ print(platformType)
 if platformType == "Windows":
     fileName = "chromedriverWin.exe"
 elif platformType == "Darwin":
-    fileName = "chromedriver"
+    fileName = "chromedriverM"
 
 path = path / fileName
 driver = webdriver.Chrome(executable_path=path)
