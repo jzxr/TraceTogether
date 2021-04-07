@@ -77,7 +77,7 @@ def createClusterTable():
     directory = root / fileName
     try:
         writer = csv.writer(open(directory, "w"), delimiter = ",",  lineterminator = "\n")
-        writer.writerow(["Location Name:", "First Degree Count", "Second Degree Count"])
+        writer.writerow(["Location Name:", "First Degree Count.", "Second Degree Count."])
     except Exception as e:
         print(e)
 
@@ -89,5 +89,3 @@ def createClusterTable():
         tempObj = tempDict[i]
         firstDeg , secondDeg = tempObj.getData()
         writer.writerow([i,firstDeg,secondDeg])
-    
-createClusterTable()

@@ -2,6 +2,7 @@ from contactCT import contactCT
 from sms import sendSHN_Notice
 from FindContacted_SE import findContactSE
 from infectedGraph_SE import infectedPlot
+from clusterTable import createClusterTable
 #CLI interface
 
 def main():
@@ -17,6 +18,9 @@ def main():
         contactCT(infected_phoneNo,infectionDate,14)
         findContactSE(infected_phoneNo)
 
+        #Create Cluster Table
+        createClusterTable()
+        
         #Send SHN Notice and infection vector graph.
         sendSHN_Notice(infected_phoneNo, 00000000)
         infectedPlot(infected_phoneNo)
