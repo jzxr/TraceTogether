@@ -48,4 +48,4 @@ def infectedPlot(infectedNumber):
     color_map = createColorNodes(graph, infectedNumber)
     nx.draw(graph, node_color=color_map, with_labels=False)
     plt.savefig("graph.png", format= "png")
-    plt.show()
+    #plt.show()

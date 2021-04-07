@@ -44,7 +44,7 @@ def firstDegreeCT(infected_phoneNo, infectionDate, days):
             x = string.split(":")
 
             #if distance less than 5 and contact duration more than 4 mins
-            if int(x[1]) < 2 and int(x[2]) > 15:
+            if int(x[1]) < 2 and int(x[2]) > 30:
                 dateList.append(int(x[0]))
         
         comfirmList.append(dateList)
@@ -140,7 +140,9 @@ def getTTdata(infected_phoneNo, data_CT_False):
     directory = root / fileName
     try:
         writer =csv.writer(open(directory, "w"), delimiter = ",",  lineterminator = "\n")
-        writer.writerow(data_CT_False)
+        writer.writerow(["Missing TT and SE data."])
+        for i in data_CT_False:
+            writer.writerow([i])
     except Exception as e:
         print(e)
 
