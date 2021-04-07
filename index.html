@@ -148,6 +148,36 @@
               <div class="card">
                 <div class="container-fluid">
                   <div class="row">
+                    <div class="col-lg-4">
+                      <div class="table-responsive ">
+                        <div class="card-header">
+                          <h3>Safe Entry & TraceTogether Data</h3>
+                          <br/>
+                        </div>
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li role="presentation" class="active">
+                            <a href="#tab-table4" role="tab" data-toggle="tab">Missing Data</a>
+                          </li>
+                          
+                        </ul>
+                        <div class="tab-content">
+                          <div role="tabpanel" class="tab-pane active" id="tab-table">
+                            <div id='missing-data'></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="container-fluid">
+                  <div class="row">
                     <div class="col-lg-10">
                       <div class="table-responsive ">
                         <div class="float-container">
@@ -206,6 +236,13 @@
               CsvToHtmlTable.init({
                 csv_path: 'Data Sets/Results/86148198_UisecondDegreeContact.csv',
                 element: 'indirect-data',
+                allow_download: true,
+                csv_options: { separator: ',', delimiter: '"' },
+                datatables_options: { "paging": true }
+              });
+              CsvToHtmlTable.init({
+                csv_path: 'Data Sets/Results/86148198_getTTofCT.csv',
+                element: 'missing-data',
                 allow_download: true,
                 csv_options: { separator: ',', delimiter: '"' },
                 datatables_options: { "paging": true }
