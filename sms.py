@@ -97,7 +97,7 @@ def __sendSMS(firstContactQueue, secondContactQueue):
 def actuallySendSMS(phoneNo):
     phoneList = []
     try:
-            send_whatsapp_msg(phoneNo, " For Presentation for Grp 2")
+            send_whatsapp_msg(phoneNo, "Hi, you come to contact with a confirmed case. You are expected to quarantine at your home for 14 days till the MOH will contact you for more details. For more details, please visit MOH website.")
     except Exception as e:
         print(e)
 
