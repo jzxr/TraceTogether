@@ -18,7 +18,6 @@ def selectInfected(infectedperson, flag):
     root = pathlib.Path("Data Sets/Safe Entry/")
     infectedperson_file = infectedperson + "_SE.csv"
     directory = root / infectedperson_file
-    print(directory)
     with open(directory, mode='r') as csv_file:
         csv_read = csv.DictReader(csv_file)
         for row in csv_read:
@@ -276,7 +275,6 @@ def findContactSE(infectedperson, infectionDate, daterange):
         # Indirect Contact
         SearchSecondDegree(newHashAVL)
         WriteSecondDegreeToCsv(newHashAVL, infectedperson)
-        newHashAVL.printAVLTree()
 
         CsvForHtmlAVL(newHashAVL, infectedperson)
 

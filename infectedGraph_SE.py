@@ -26,7 +26,6 @@ def createNodes_Edge_First2(node, graph, infectedNumber):
 def createColorNodes(graph, infectedNumber):
     color_map = []
     for node in graph:
-        print(node)
         if node == infectedNumber:
             color_map.append('red')
         elif infectedNumber in nx.all_neighbors(graph, node):
