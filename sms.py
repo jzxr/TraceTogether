@@ -97,7 +97,6 @@ def __sendSMS(firstContactQueue, secondContactQueue):
 def actuallySendSMS(phoneNo):
     phoneList = []
     try:
-        for i in phoneList:
             send_whatsapp_msg(phoneNo, " For Presentation for Grp 2")
     except Exception as e:
         print(e)
