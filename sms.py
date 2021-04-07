@@ -95,15 +95,16 @@ def __sendSMS(firstContactQueue, secondContactQueue):
     print("All SHN and Notice Sent.")
 
 def actuallySendSMS(phoneNo):
+    phoneList = []
     try:
-        send_whatsapp_msg(phoneNo, " For Presentation for Grp 2")
+        for i in phoneList:
+            send_whatsapp_msg(phoneNo, " For Presentation for Grp 2")
     except Exception as e:
         print(e)
 
 
-def sendSHN_Notice(infected_phoneNo, ActualSend_No):
+def sendSHN_Notice(infected_phoneNo):
     firstContactQueue = avlQueueFirst(86148198,1)
     secondContactQueue = avlQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
-    ActualSend_No = "+65" + str(ActualSend_No)
     actuallySendSMS(ActualSend_No)
