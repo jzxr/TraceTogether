@@ -73,8 +73,6 @@ class HashMap:
         key = self.key.get(date)
         if key is not None:    
             return key
-        else:
-            print("Key", date ,"does not exist")
 
     def put(self, key, value, location, parentNode, color):
         k = self.getKey(key)
