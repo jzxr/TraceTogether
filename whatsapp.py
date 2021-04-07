@@ -58,7 +58,7 @@ print(platformType)
 if platformType == "Windows":
     fileName = "chromedriverWin.exe"
 elif platformType == "Darwin":
-    fileName = "chromedriverM"
+    fileName = "chromedriver"
 
 path = path / fileName
 print(path)
