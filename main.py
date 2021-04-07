@@ -10,7 +10,7 @@ def main():
     datelist = ['01','02','03','04','05','06','07','08','09']
     #Inputs
     infected_phoneNo = input("Please Enter the infected Phone No.: 86148198\n")
-    if len(infected_phoneNo) != 8:
+    if len(infected_phoneNo) != 8 or int(infected_phoneNo) < 80000000 or int(infected_phoneNo) > 99999999 :
         print("Invalid Phone Number")
     else:
         infectionDate = "13/2/2021"

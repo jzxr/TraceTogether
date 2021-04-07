@@ -48,7 +48,7 @@
                             <p>Table List</p>
                         </a>
                     </li>
-                    <li class="active ">
+                    <li class = "active">
                         <a href="./map.html">
                             <i class="nc-icon nc-pin-3"></i>
                             <p>Maps</p>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
 
                 <!-- /.container -->
 
@@ -144,7 +144,9 @@
                 ================================================== -->
                 <!-- Placed at the end of the document so the pages load faster -->
 
-
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                
 
                 <!--Map-->
                 <script type="text/javascript" src="js/heatmap.js"></script>
@@ -152,6 +154,7 @@
                 <script src="js/api/APIKey.js"></script>
                 <script src="js/jquery-2.1.1.min.js"></script>
                 <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+                
                 <script>
                     $(document).ready(function () {
                         $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization&key=" + mAPIkey, function () {
@@ -194,8 +197,6 @@
                         });
                     });
                 </script>
-                <script type="text/javascript" src="js/jquery.min.js"></script>
-                <script type="text/javascript" src="js/bootstrap.min.js"></script>
                 <script type="text/javascript" src="js/jquery.csv.min.js"></script>
                 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
                 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
