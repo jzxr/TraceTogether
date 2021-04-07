@@ -44,7 +44,7 @@ def firstDegreeCT(infected_phoneNo, infectionDate, days):
             x = string.split(":")
 
             #if distance less than 5 and contact duration more than 4 mins
-            if int(x[1]) < 5 and int(x[2]) > 4:
+            if int(x[1]) < 2 and int(x[2]) > 15:
                 dateList.append(int(x[0]))
         
         comfirmList.append(dateList)

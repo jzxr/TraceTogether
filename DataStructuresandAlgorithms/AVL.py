@@ -105,6 +105,4 @@ class AVL_Tree:
     def getBalance(self, root):
         if root is None:
             return 0
-        return self.getHeight(root.left) - self.getHeight(root.right)
-
-        
+        return self.getHeight(root.left) - self.getHeight(root.right)      
