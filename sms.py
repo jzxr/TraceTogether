@@ -1,5 +1,5 @@
 from DataStructuresandAlgorithms.queue import Queue
-from DataStructuresandAlgorithms.BST import BST
+from DataStructuresandAlgorithms.AVL import AVL_Tree
 import csv
 from pathlib import Path
 from itertools import chain
@@ -9,7 +9,7 @@ except Exception as e:
     print(e)
 
 
-def bstQueueFirst(infected_phoneNo, deg):
+def avlQueueFirst(infected_phoneNo, deg):
     """
     @Param phone no. and 1st or 2nd degree contact.
     @Return Queue Object.
@@ -56,13 +56,13 @@ def bstQueueFirst(infected_phoneNo, deg):
     data2 = list(chain.from_iterable(data2))
 
     #Merge and remove duplicates.
-    ContactBST = BST()
+    ContactAVL = AVL_Tree()
     for i in data1:
-        ContactBST.put(str(i))
+        ContactAVL.put(str(i))
     for i in data2:
-        ContactBST.put(str(i))
+        ContactAVL.put(str(i))
 
-    toQueue = ContactBST.inOrder()
+    toQueue = ContactAVL.inOrder()
 
     ContactQueue = Queue()
     for i in toQueue:
@@ -101,7 +101,7 @@ def actuallySendSMS(phoneNo):
 
 
 def sendSHN_Notice():
-    firstContactQueue = bstQueueFirst(86148198,1)
-    secondContactQueue = bstQueueFirst(86148198,2)
+    firstContactQueue = avlQueueFirst(86148198,1)
+    secondContactQueue = avlQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
     actuallySendSMS("+6500000000")

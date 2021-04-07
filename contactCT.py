@@ -2,7 +2,7 @@ import datetime as DT
 import csv, os
 from pathlib import Path
 from itertools import chain
-from DataStructuresandAlgorithms.BST import BST
+from DataStructuresandAlgorithms.AVL import AVL_Tree
 from DataStructuresandAlgorithms.SeperateChaining import HashMap
 
 #Create a CSV of first Degree Contact.
@@ -21,7 +21,6 @@ def firstDegreeCT(infected_phoneNo, infectionDate, days):
     except Exception as e:
         print(e)
         return False
-
 
     #Get Index of infection date.
     for i in range(25):
@@ -193,13 +192,13 @@ def contactCT(infected_phoneNo,infectionDate, days):
     data_CT_True, data_CT_False = secondDegreeCTExist(infected_phoneNo)
 
     #Remove Duplicated numbers and sort using BST.
-    newTree1 = BST()
+    newTree1 = AVL_Tree()
     for i in data_CT_True:
         newTree1.put(str(i))
 
     data_CT_True = newTree1.inOrder()
 
-    newTree2 = BST()
+    newTree2 = AVL_Tree()
     for i in data_CT_False:
         newTree2.put(str(i))
 

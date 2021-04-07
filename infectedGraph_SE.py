@@ -3,25 +3,26 @@ import networkx as nx
 import csv
 from pathlib import Path
 from itertools import chain
-from FindContacted_SE.py import newHash
+from FindContacted_SE import newHash
 
 def createNodes_Edge_First(graph, infectedNumber):
     key_list = list(newHash.key.keys())
     val_list = list(newHash.key.values())
     
     for i in range(len(newHash.st)):
-        temp = newHash.st[i]
-        counter = 0
+        
+        createNodes_Edge_First2(newHash.st[i], graph, infectedNumber)
 
-        #Limit is those commented out.
-        while temp is not None:
-            # if temp.parentNode is not infectedNumber:
-            graph.add_node(temp.value)
-                # graph.add_node(temp.parentNode)
-                # graph.add_edge(temp.parentNode, temp.value)
-                # graph.add_edge(infectedNumber, temp.parentNode)
-            temp = temp.next 
-        print()
+def createNodes_Edge_First2(node, graph, infectedNumber):
+    if node:
+        createNodes_Edge_First2(node.left, graph, infectedNumber)
+
+        if node.parentNode is not infectedNumber:
+            graph.add_node(node.parentNode)
+            graph.add_edge(node.parentNode, node.value)
+            graph.add_edge(infectedNumber, node.parentNode)
+
+        createNodes_Edge_First2(node.right, graph, infectedNumber)
 
 def createColorNodes(graph, infectedNumber):
     color_map = []
