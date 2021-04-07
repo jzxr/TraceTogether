@@ -6,8 +6,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
-import socket
+import socket, csv, platform
 import csv
+from pathlib import Path 
 
 message_text = ""
 
@@ -50,8 +51,17 @@ def is_connected():
     except BaseException:
         is_connected()
 
+#OS and Chrome Checking.
+platformType = platform.system()
+path = Path(__file__).parent.absolute()
+if platformType == "Windows":
+    fileName = "chromedriverWin.exe"
+elif platformType == "MacOS":
+    fileName = "chromedriverMac"
 
-driver = webdriver.Chrome(executable_path="/Users/jasminezheng/Desktop/SIT/CSC1008 Data Structure and Algorithm /Group2_TraceTogether/TraceTogether/chromedriver")
+path = path / fileName
+driver = webdriver.Chrome(executable_path=path)
+driver.capabilities ['browserVersion']
 driver.get("http://web.whatsapp.com")
 sleep(10)
 
@@ -119,5 +129,5 @@ print(is_connected.__doc__)
 print(send_whatsapp_msg.__doc__)
 '''
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

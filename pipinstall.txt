@@ -1,3 +1,5 @@
-networkx
-matplotlib
-scipy
+The Following Python Module has to be install for code to wrok.
+    networkx
+    matplotlib
+    scipy
+    selenium

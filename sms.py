@@ -3,10 +3,9 @@ from DataStructuresandAlgorithms.AVL import AVL_Tree
 import csv
 from pathlib import Path
 from itertools import chain
-try:
-    from DataStructuresandAlgorithms.whatsapp import send_whatsapp_msg
-except Exception as e:
-    print(e)
+from whatsapp import send_whatsapp_msg
+
+
 
 
 def avlQueueFirst(infected_phoneNo, deg):
@@ -72,7 +71,7 @@ def avlQueueFirst(infected_phoneNo, deg):
 
     return ContactQueue
 
-#Dun use this one cause will really send LOL.
+#Dun use this one cause will really send LOL and spam people.
 def __sendSMS(firstContactQueue, secondContactQueue):
 
     msgList = ["Hi you been in contact with an infected person. Please Quratine from today.",
@@ -95,7 +94,6 @@ def __sendSMS(firstContactQueue, secondContactQueue):
     print("All SHN and Notice Sent.")
 
 def actuallySendSMS(phoneNo):
-    phoneList = []
     try:
             send_whatsapp_msg(phoneNo, "Hi, you come to contact with a confirmed case. You are expected to quarantine at your home for 14 days till the MOH will contact you for more details. For more details, please visit MOH website.")
     except Exception as e:
@@ -111,4 +109,4 @@ def sendSHN_Notice(infected_phoneNo):
     except:
         print("No Actual Phone Number")
 
-actuallySendSMS("+6597601182")
+actuallySendSMS("+6597604430")
