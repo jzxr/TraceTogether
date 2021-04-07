@@ -107,4 +107,7 @@ def sendSHN_Notice(infected_phoneNo):
     firstContactQueue = avlQueueFirst(86148198,1)
     secondContactQueue = avlQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
-    actuallySendSMS(ActualSend_No)
+    try:
+        actuallySendSMS(ActualSend_No)
+    except:
+        print("No Actual Phone Number")
