@@ -55,6 +55,6 @@ class interpolationSearch:
 
         return None
 
-# data = [10, 20, 25, 35, 50, 70, 85, 100, 110, 120, 125]
-# test = interpolationSearch(data,25)
-# print(test.search())
+data = ["10", "20", "25", "35", '50', '70', '85', '100', '110', '120', '125']
+test = interpolationSearch(data,'25')
+print(test.search())
