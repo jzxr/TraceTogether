@@ -58,11 +58,10 @@ print(platformType)
 if platformType == "Windows":
     fileName = "chromedriverWin.exe"
 elif platformType == "Darwin":
-    fileName = "chromedriverMac"
+    fileName = "chromedriver"
 
 path = path / fileName
 driver = webdriver.Chrome(executable_path=path)
-driver.capabilities ['browserVersion']
 driver.get("http://web.whatsapp.com")
 sleep(10)
 
