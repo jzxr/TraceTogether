@@ -61,6 +61,7 @@ elif platformType == "Darwin":
     fileName = "chromedriverM"
 
 path = path / fileName
+print(path)
 driver = webdriver.Chrome(executable_path=path)
 driver.get("http://web.whatsapp.com")
 sleep(10)
