@@ -101,9 +101,9 @@ def actuallySendSMS(phoneNo):
         print(e)
 
 
-def sendSHN_Notice():
+def sendSHN_Notice(infected_phoneNo, ActualSend_No):
     firstContactQueue = avlQueueFirst(86148198,1)
     secondContactQueue = avlQueueFirst(86148198,2)
     __sendSMS(firstContactQueue,secondContactQueue)
-    #ActualSend_No = "+65" + str(ActualSend_No)
-    #actuallySendSMS(ActualSend_No)
+    ActualSend_No = "+65" + str(ActualSend_No)
+    actuallySendSMS(ActualSend_No)

@@ -18,7 +18,7 @@ def main():
         findContactSE(infected_phoneNo)
 
         #Send SHN Notice and infection vector graph.
-        sendSHN_Notice()
+        sendSHN_Notice(infected_phoneNo, 00000000)
         infectedPlot(infected_phoneNo)
 
 if __name__ == "__main__":
