@@ -54,11 +54,14 @@ class HashMap:
     def setKey(self):
         for i in range(len(HashMap.dateRange)):
             counter = 0
-            while self.flag[((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size] is True:
+            # Collision Detection 
+            while self.flag[(HashMap.dateRange[i] % self.size) + counter] is True:
                 if ((HashMap.dateRange[i] % self.size) + counter) < self.size - 1:
                     counter += 1
-            self.key[HashMap.dateRange[i]] = ((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size
-            self.flag[((HashMap.dateRange[i] % self.size) + pow(counter, 2)) % self.size] = True
+                else:
+                    counter -= self.size - 1
+            self.key[HashMap.dateRange[i]] = (HashMap.dateRange[i] % self.size) + counter
+            self.flag[(HashMap.dateRange[i] % self.size) + counter] = True
 
     # Get HashMap Keys
     def getkeys(self):
