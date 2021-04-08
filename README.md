@@ -34,7 +34,7 @@
 - The program can be run by executing main.py
   - Two inputs are needed from User: SG Phone No without country code. Date in 13/2/2021 Format
 
-### Web Ui
+### Web UI
 
 - Files
   - index.html
