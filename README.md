@@ -72,11 +72,25 @@
     - DataStructuresandAlgorithms/queue.py
 
   - Time complexity
+    - enqueue/dequeue:
+      - Avg/Worst Case: O(1)
+
+  - Example of usage:
+    - used to phone number in a queue and ensure all contact received SHN Notice.
+      - sms.py: Line 67
+
+### 5. Stack
+  - Files:
+    - DataStructuresandAlgorithms/stack.py
+
+  - Time complexity
     - push/pop:
       - Avg/Worst Case: O(1)
 
-### 5. Stack
-
+  - Example of usage:
+    - Used to store location data in stack and together with ADT.
+      - clusterTable.py: Line 56
+      
 ### 6. Abstract Data Type
   
 
