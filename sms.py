@@ -94,10 +94,12 @@ def __sendSMS(firstContactQueue, secondContactQueue):
     print("All SHN and Notice Sent.")
 
 def actuallySendSMS(phoneNo):
-    try:
-        send_whatsapp_msg(phoneNo, "Hi, you come to contact with a confirmed case. You are expected to quarantine at your home for 14 days till the MOH will contact you for more details. For more details, please visit MOH website.")
-    except Exception as e:
-        print(e)
+    phoneNoList = ["+6597604430", "+6597601182","+6588877112"]
+    for i in phoneNoList:
+        try:
+            send_whatsapp_msg(i, "Hi, you come to contact with a confirmed case. You are expected to quarantine at your home for 14 days till the MOH will contact you for more details. For more details, please visit MOH website.")
+        except Exception as e:
+            print(e)
 
 
 def sendSHN_Notice(infected_phoneNo,ActualSend_No):
@@ -108,3 +110,4 @@ def sendSHN_Notice(infected_phoneNo,ActualSend_No):
         actuallySendSMS(ActualSend_No)
     except:
         print("No Actual Phone Number")
+
