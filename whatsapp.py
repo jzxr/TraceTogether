@@ -52,20 +52,22 @@ def is_connected():
         is_connected()
 
 #OS and Chrome Checking.
-platformType = platform.system()
-path = Path(__file__).parent.absolute()
-print(platformType)
-if platformType == "Windows":
-    fileName = "chromedriverWin.exe"
-elif platformType == "Darwin":
-    fileName = "chromedriver"
+try:
+    platformType = platform.system()
+    path = Path(__file__).parent.absolute()
+    print(platformType)
+    if platformType == "Windows":
+        fileName = "chromedriverWin.exe"
+    elif platformType == "Darwin":
+        fileName = "chromedriver"
 
-path = path / fileName
-print(path)
-driver = webdriver.Chrome(executable_path=path)
-driver.get("http://web.whatsapp.com")
-sleep(10)
-
+    path = path / fileName
+    print(path)
+    driver = webdriver.Chrome(executable_path=path)
+    driver.get("http://web.whatsapp.com")
+    sleep(10)
+except Exception as e:
+    print(e)
 
 # wait time to scan the code in second
 
