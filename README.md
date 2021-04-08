@@ -2,6 +2,27 @@
 
 #CSC1008 Project
 
+## README Description
+  - This README files contatins the following:
+    - Installation instructions.
+    - Running instructions.
+    - Algorithms Details.
+    - 
+
+## Installation instructions.
+  - The following modules needs to be install on python
+    - pip install networkx
+    - pip install matplotlib
+    - pip install scipy
+    - pip install selenium
+
+## Running instructions.
+### Python CLI
+  - The program can be run by executing main.py
+    - Two inputs are needed from User: SG Phone No without country code. Date in 13/2/2021 Format.
+### Web Ui
+  
+
 ## Technical Note of HashMap for Presentation 
 ### HashMap 
   - Implicit linked link 
