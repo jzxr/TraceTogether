@@ -36,16 +36,15 @@
 
 ### Web Ui
 
-- Open folder in visual studio. To allow automate updating for the crawlers:
+- Files
+  - index.html
+  - map.html
 
-- Run index.html
-  - To run website on localhost, use localhost:8000 by typing in the command in Terminal:
-    - python -m SimpleHTTPServer
+- To run website on localhost, use localhost:8000 by typing in the command in Terminal:
+  - python -m SimpleHTTPServer
 
 - You can also:
   - in browser, type in http://localhost:8000
-
-- Make sure that the .html is in the same folder as other files & folders.
 
 ---
 
