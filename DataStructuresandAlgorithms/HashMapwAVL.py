@@ -20,8 +20,8 @@ class Node:
         self.parentNode = parentNode
         
         # Red: Infected
-        # Yellow: 1st Degree
-        # Orange: 2nd Degree 
+        # Orange: 1st Degree
+        # Yellow: 2nd Degree 
         self.color = color
 
 
@@ -34,7 +34,6 @@ class HashMap:
         self.size = daterange
         # Flag for Probing of Date
         self.flag = [False for x in range(self.size)]
-        # ??? 
         self.key = dict()
         # Array for storing Dates
         self.st = [None for x in range(self.size)]
@@ -51,6 +50,7 @@ class HashMap:
             newDate = self.dateBase - datetime.timedelta(days=i)
             HashMap.dateRange.append(int(newDate.strftime('%d%m%Y')))
 
+    # Linear Probing for Date
     def setKey(self):
         for i in range(len(HashMap.dateRange)):
             counter = 0
