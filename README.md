@@ -7,7 +7,6 @@
     - Installation instructions.
     - Running instructions.
     - Algorithms Details.
-    - 
 
 ## Installation instructions.
   - The following modules needs to be install on python
@@ -39,6 +38,20 @@
     - Use to combine data from multiple CSV.
       - contactCT.py: Line 111
       - FindContacted_SE.py: Line 256
+
+### 2. AVL Tree
+  - Files:
+    - DataStructuresandAlgorithms/AVL.py
+
+  - Time complexity
+    - search/insert:
+      - Avg/Worst Case: O(log n)
+
+  -Example of usage:
+    - Use to remove duplicated data when merging two CSV.
+    - Inorder return to retirved sorted data,
+      - contactCT.py: Line 196
+      - sms.py: Line 58
   
 
 ## Technical Note of HashMap for Presentation 
