@@ -41,9 +41,12 @@
   - map.html
 
 - To run website on localhost, use localhost:8000 by typing in the command in Terminal:
-  - python -m SimpleHTTPServer
+  - For windows:
+    - py -m http.server
+  - For Mac:
+    - python -m SimpleHTTPServer
 
-- You can also:
+- Then:
   - in browser, type in <http://localhost:8000>
 
 ---
