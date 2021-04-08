@@ -6,6 +6,7 @@ import pathlib
 
 #################### First Degree Contact Code ############################
 
+# Curate the Infected Person location, check-out and checkin information
 def selectInfected(infectedperson, flag):
     check_in_date_arr = list()
     check_in_location_arr = list()
@@ -44,7 +45,7 @@ def selectInfected(infectedperson, flag):
         arr = [check_in_date_arr, check_in_location_arr, check_in_time_arr, check_out_time_arr, first_degree_person1, first_degree_person2]
         return arr
 
-
+# Search for 1st degree contact and 2nd degree contact
 def SearchContacted(parentNode, arr, newHashAVL, flag):
     root_dir = str(pathlib.Path().absolute()) + "/Data Sets/Location SE Data/"
     for root, dirs, files in os.walk(root_dir, onerror=None):
@@ -143,7 +144,7 @@ def SearchContacted(parentNode, arr, newHashAVL, flag):
                             newList = [seconddegree_checkin_date, location, seconddegree_checkin_time, seconddegree_checkout_time, firstdegree_phone_number_check_in, firstdegree_phone_number_check_out]
                             data_writer.writerow(newList)
 
-# Write HashMap to Csv
+# Write HashMap to Csv using Linked List
 def writeToCsvLinkedList(newHashAVL, filename, color):
     root = pathlib.Path("Data Sets/Results/")
     directory = root / filename
@@ -163,6 +164,7 @@ def writeToCsvLinkedList(newHashAVL, filename, color):
                 newList.insert(0, str(newHashAVL.st[i].key).split(" ")[0])
                 data_writer.writerow(newList)
 
+# Helper function to write Hashmap to CSV using AVL Tree
 def writeToCsvAVL(newHashAVL, filename, color):
     root = pathlib.Path("Data Sets/Results/")
     directory = root / filename
@@ -176,6 +178,7 @@ def writeToCsvAVL(newHashAVL, filename, color):
                 contactedlist.insert(0, str(newHashAVL.st[i].key).split(" ")[0])
                 data_writer.writerow(contactedlist)
 
+# Write HashMap to Csv using AVL Tree
 def writeToCsvAVL2(node, color):
     arr = []
     if node:
@@ -185,6 +188,7 @@ def writeToCsvAVL2(node, color):
         arr += writeToCsvAVL2(node.right, color)
     return arr
 
+# Helper function to write to CSV to be used for HeatMap and Website Table using AVL Tree
 def CsvForHtmlAVL(newHashAVL, infectedperson):
     root = pathlib.Path("Data Sets/Results/")
     filename = "WriteToHtml.csv"
@@ -202,6 +206,7 @@ def CsvForHtmlAVL(newHashAVL, infectedperson):
             else:
                 CsvForHtmlAVL2(newHashAVL.st[i], newHashAVL, infectedperson, data_writer)
 
+# Wwrite to CSV to be used for HeatMap and Website Table using AVL Tree
 def CsvForHtmlAVL2(node, newHashAVL, infectedperson, data_writer):
     if node:
         CsvForHtmlAVL2(node.left, newHashAVL, infectedperson, data_writer)
@@ -213,7 +218,7 @@ def CsvForHtmlAVL2(node, newHashAVL, infectedperson, data_writer):
 
         CsvForHtmlAVL2(node.right, newHashAVL, infectedperson, data_writer)
 
-# Write to CSV to be used for HeatMap and Website Table
+# Write to CSV to be used for HeatMap and Website Table using Linked List
 def CsvForHtmlLinkedList(newHashAVL, infectedperson):
     filename = "WriteToHtml.csv"
     file_exists = os.path.isfile(filename)
@@ -240,17 +245,21 @@ def CsvForHtmlLinkedList(newHashAVL, infectedperson):
 
 #################### Second Degree Contact Code ############################
 
+# Curate and collect 1st degree location, check-in and check-out location
 def SearchSecondDegree(newHashAVL):
     arr = selectInfected("SecondDegreeRange", False)
     SearchContacted(None, arr, newHashAVL, False)
 
+# Search for and 2nd degree contact and write to CSV
 def WriteSecondDegreeToCsv(newHashAVL, infectedperson):
     #Linked List Implemenetation
     writeToCsvAVL(newHashAVL, infectedperson + "_SecondDegree_SE.csv", "Yellow")
 
+# Reset the 1st degree contact
 def reset():
     os.remove("./Data Sets/Safe Entry/SecondDegreeRange_SE.csv")
 
+# Driver function 
 def findContactSE(infectedperson, infectionDate, daterange):
 
     newHashAVL = HashMap(infectionDate, daterange)
