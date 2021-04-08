@@ -6,7 +6,7 @@
 
 ---
 
-- This README files contatins the following:
+- This README files contains the following:
   - Installation instructions
   - Running instructions
   - Algorithms Details
