@@ -100,13 +100,11 @@ def actuallySendSMS(phoneNo):
         print(e)
 
 
-def sendSHN_Notice(infected_phoneNo):
-    firstContactQueue = avlQueueFirst(86148198,1)
-    secondContactQueue = avlQueueFirst(86148198,2)
+def sendSHN_Notice(infected_phoneNo,ActualSend_No):
+    firstContactQueue = avlQueueFirst(infected_phoneNo,1)
+    secondContactQueue = avlQueueFirst(infected_phoneNo,2)
     __sendSMS(firstContactQueue,secondContactQueue)
     try:
         actuallySendSMS(ActualSend_No)
     except:
         print("No Actual Phone Number")
-
-actuallySendSMS("+6597604430")

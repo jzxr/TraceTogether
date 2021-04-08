@@ -68,7 +68,10 @@ def createClusterTable():
             for row in reader:
                 row.pop(0)
                 row.pop(0)
-                locationStack.push(row)
+                if row[0] == "Location":
+                    pass
+                else:
+                    locationStack.push(row)
     except Exception as e:
         print(e)
 
@@ -90,3 +93,5 @@ def createClusterTable():
         tempObj = tempDict[i]
         firstDeg , secondDeg = tempObj.getData()
         writer.writerow([i,firstDeg,secondDeg])
+
+createClusterTable()

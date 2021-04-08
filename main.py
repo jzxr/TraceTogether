@@ -36,7 +36,7 @@ def main():
         createClusterTable()
         
         #Send SHN Notice and infection vector graph.
-        sendSHN_Notice(infected_phoneNo)
+        sendSHN_Notice(infected_phoneNo,"+6586148198")
         infectedPlot(infected_phoneNo, newHashAVL)
         data_prep()
 
