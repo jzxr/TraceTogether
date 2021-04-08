@@ -21,6 +21,24 @@
   - The program can be run by executing main.py
     - Two inputs are needed from User: SG Phone No without country code. Date in 13/2/2021 Format.
 ### Web Ui
+  - Add Ui stuff
+    - Add Ui stuff
+
+## Algorithms Details
+### 1. HashMap with Separate Chaining & Linear Probing
+  - Files:
+    - DataStructuresandAlgorithms/HashMapwAVL.py
+    - DataStructuresandAlgorithms/SeperateChaining.py
+
+  - Time complexity:
+    - search/Insert:
+      - Avg Case: O(1)
+      - Worst Case: O(n)
+
+  - Example of usage:
+    - Use to combine data from multiple CSV.
+      - contactCT.py: Line 111
+      - FindContacted_SE.py: Line 256
   
 
 ## Technical Note of HashMap for Presentation 
