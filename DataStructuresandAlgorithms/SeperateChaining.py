@@ -26,7 +26,6 @@ class HashMap:
         self.size = 25
         # Flag for Probing of Date
         self.flag = [False for x in range(self.size)]
-        # ??? 
         self.key = dict()
         # Array for storing Dates
         self.st = [None for x in range(self.size)]
@@ -34,12 +33,13 @@ class HashMap:
         # Set keys for HashMap for the 25 days
         self.setKey()
 
-    # Get Date Range: 20/1/2021 to 13/2/21
+    # Get the previous 14days based on user input
     def collectionofDates(self):
         for i in range(self.size):
             newDate = HashMap.dateBase - datetime.timedelta(days=i)
             HashMap.dateRange.append(int(newDate.strftime('%d%m%Y')))
-
+    
+    # Linear Probing for Date 
     def setKey(self):
         for i in range(len(HashMap.dateRange)):
             counter = 0
