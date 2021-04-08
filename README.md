@@ -47,7 +47,7 @@
     - search/insert:
       - Avg/Worst Case: O(log n)
 
-  -Example of usage:
+  - Example of usage:
     - Use to remove duplicated data when merging two CSV.
     - Inorder return to retirved sorted data,
       - contactCT.py: Line 196
