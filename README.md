@@ -90,8 +90,19 @@
   - Example of usage:
     - Used to store location data in stack and together with ADT.
       - clusterTable.py: Line 56
-      
+
 ### 6. Abstract Data Type
+  - Files:
+    - clusterTable.py
+
+  - Time complexity
+    - insert/search:
+      - Avg Case: O(1)
+      - Worst Case: O(n)
+
+  - Example of usage:
+    - Used to keep track of each location contact type count.
+      - clusterTable.py: Line 59
   
 
 ## Technical Note of HashMap for Presentation 
