@@ -4,6 +4,7 @@ import csv
 from pathlib import Path
 from itertools import chain
 
+# Helper Function to adds 1st degree and 2nd degree node to graph
 def createNodes_Edge_First(graph, infectedNumber, newHashAVL):
     key_list = list(newHashAVL.key.keys())
     val_list = list(newHashAVL.key.values())
@@ -12,6 +13,7 @@ def createNodes_Edge_First(graph, infectedNumber, newHashAVL):
         
         createNodes_Edge_First2(newHashAVL.st[i], graph, infectedNumber)
 
+# Add 1st and 2nd degree node to graph
 def createNodes_Edge_First2(node, graph, infectedNumber):
     if node:
         createNodes_Edge_First2(node.left, graph, infectedNumber)
@@ -23,6 +25,10 @@ def createNodes_Edge_First2(node, graph, infectedNumber):
 
         createNodes_Edge_First2(node.right, graph, infectedNumber)
 
+# Categories the infected person, 1st and 2nd degree with different colors
+# Red: Infected Person
+# Orange: 1st Degree Contact
+# Yellow: 2nd Degree Contact
 def createColorNodes(graph, infectedNumber):
     color_map = []
     for node in graph:
@@ -35,7 +41,7 @@ def createColorNodes(graph, infectedNumber):
     
     return color_map
         
-
+# Driver Function
 def infectedPlot(infectedNumber, newHashAVL):
     graph = nx.Graph()
 
