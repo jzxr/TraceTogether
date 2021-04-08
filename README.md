@@ -93,7 +93,7 @@
   - DataStructuresandAlgorithms/linked_list.py
 
 - Time complexity
-  - search:
+  - Search:
     - Avg/Worst Case: O(n)
   - Insertion/Deletion:
     - Avg/Worst Cse: O(1)
@@ -108,7 +108,7 @@
   - DataStructuresandAlgorithms/queue.py
 
 - Time complexity
-  - enqueue/dequeue:
+  - Enqueue/Qequeue:
     - Avg/Worst Case: O(1)
 
 - Example of usage:
@@ -121,7 +121,7 @@
   - DataStructuresandAlgorithms/stack.py
 
 - Time complexity
-  - push/pop:
+  - Push/Pop:
     - Avg/Worst Case: O(1)
 
 - Example of usage:
@@ -134,7 +134,7 @@
   - clusterTable.py
 
 - Time complexity
-  - insert/search:
+  - Insert/Search:
     - Avg Case: O(1)
     - Worst Case: O(n)
 
