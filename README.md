@@ -44,7 +44,7 @@
   - python -m SimpleHTTPServer
 
 - You can also:
-  - in browser, type in http://localhost:8000
+  - in browser, type in <http://localhost:8000>
 
 ---
 
