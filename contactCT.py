@@ -135,7 +135,7 @@ def mergeSecondDegreeCT(infected_phoneNo, data_CT_True):
 #Create a csv with numbers where TT data needs to be taken from users.
 def getTTdata(infected_phoneNo, data_CT_False):
     root = Path("Data Sets/Results/")
-    fileName = str(infected_phoneNo) + "_getTTofCT.csv"
+    fileName = "getTTofCT.csv"
     directory = root / fileName
     try:
         writer =csv.writer(open(directory, "w"), delimiter = ",",  lineterminator = "\n")
@@ -166,9 +166,9 @@ def uiFormating(infected_phoneNo, deg):
         return False
 
     if deg ==1:
-        fileName = str(infected_phoneNo) + "_UiFirstDegreeContact.csv"
+        fileName = "UiFirstDegreeContact.csv"
     elif deg ==2:
-        fileName = str(infected_phoneNo) + "_UisecondDegreeContact.csv"
+        fileName = "UisecondDegreeContact.csv"
 
 
     directory = root / fileName
