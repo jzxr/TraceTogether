@@ -7,9 +7,9 @@
 ---
 
 - This README files contatins the following:
-  - Installation instructions.
-  - Running instructions.
-  - Algorithms Details.
+  - Installation instructions
+  - Running instructions
+  - Algorithms Details
 
 ---
 
@@ -32,7 +32,7 @@
 ### Python CLI
 
 - The program can be run by executing main.py
-  - Two inputs are needed from User: SG Phone No without country code. Date in 13/2/2021 Format.
+  - Two inputs are needed from User: SG Phone No without country code. Date in 13/2/2021 Format
 
 ### Web Ui
 
