@@ -49,6 +49,16 @@
 - Then:
   - in browser, type in <http://localhost:8000>
 
+### Heatmap
+
+- Files
+  - map.html
+  - potential.csv
+  
+- Choose potential.csv for the heatmap
+- Click on toggle heatmap to display the radius
+- Adjust the radius and opacity for your preference
+
 ---
 
 ## Algorithms Details
