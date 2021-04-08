@@ -2,6 +2,7 @@ import pathlib
 import csv
 from DataStructuresandAlgorithms.linked_list import LinkedList
 
+# Insert Location Details (longitude and latitude) onto Linked List
 def insertLocation():
     newList = LinkedList()
     newList.insertAtHead("BALESTIER PLAZA", 103.850723, 1.325601)
@@ -15,6 +16,7 @@ def insertLocation():
     newList.insertAtHead("PIONEER MALL", 103.6974, 1.3421)
     return newList
 
+# Create a CSV suitable for plotting onto HeatMap
 def processing(newList):
     root = pathlib.Path("Data Sets/Results/")
     readfile = "WriteToHtml.csv"
@@ -30,6 +32,7 @@ def processing(newList):
             location_node = newList.search(row["Location"])
             csv_write.writerow([row["Date"], row["Phone-Number"], row["Location"], row["Degree Contact"], location_node.longtitute, location_node.latitute, 0, 1])
 
+# Driver Function
 def data_prep():
     newList = insertLocation()
     processing(newList)
