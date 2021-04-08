@@ -55,19 +55,20 @@
 
 ---
 
-### 1. HashMap with Separate Chaining & Linear Probing
+### 1. HashMap with Separate Chaining & Linear Probing (Integrated with AVL Tree)
 
 - Files:
   - DataStructuresandAlgorithms/HashMapwAVL.py
   - DataStructuresandAlgorithms/SeperateChaining.py
 
 - Time complexity:
-  - search/Insert:
-    - Avg Case: O(1)
-    - Worst Case: O(n)
+  - Search/Insert:
+    - Avg/Worst Case: O(log n)
 
 - Example of usage:
   - Use to combine data from multiple CSV/Data.
+  - Use to remove duplicated data when merging CSV/Data
+  - Inorder return to retrieve sorted data
     - contactCT.py: Line 111
     - FindContacted_SE.py: Line 256
 
@@ -77,7 +78,7 @@
   - DataStructuresandAlgorithms/AVL.py
 
 - Time complexity
-  - search/insert:
+  - Search/Insert:
     - Avg/Worst Case: O(log n)
 
 - Example of usage:
