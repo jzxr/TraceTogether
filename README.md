@@ -35,7 +35,7 @@
       - Worst Case: O(n)
 
   - Example of usage:
-    - Use to combine data from multiple CSV.
+    - Use to combine data from multiple CSV/Data.
       - contactCT.py: Line 111
       - FindContacted_SE.py: Line 256
 
@@ -48,14 +48,32 @@
       - Avg/Worst Case: O(log n)
 
   - Example of usage:
-    - Use to remove duplicated data when merging two CSV.
+    - Use to remove duplicated data when merging CSV/Data.
     - Inorder return to retirved sorted data,
       - contactCT.py: Line 196
       - sms.py: Line 58
 
 ### 3.  Linked List
+  - Files:
+    - DataStructuresandAlgorithms/linked_list.py
+
+  - Time complexity
+    - search:
+      - Avg/Worst Case: O(n)
+    - Insertion/Deletion:
+      - Avg/Worst Cse: O(1)
+
+  - Example of usage:
+    - Used for data processing for adding attributes for plotting of HeatMap
+      - dataPrep_HeatMap.py: Line 6
 
 ### 4. Queue
+  - Files:
+    - DataStructuresandAlgorithms/queue.py
+
+  - Time complexity
+    - push/pop:
+      - Avg/Worst Case: O(1)
 
 ### 5. Stack
 
