@@ -52,6 +52,14 @@
     - Inorder return to retirved sorted data,
       - contactCT.py: Line 196
       - sms.py: Line 58
+
+### 3.  Linked List
+
+### 4. Queue
+
+### 5. Stack
+
+### 6. Abstract Data Type
   
 
 ## Technical Note of HashMap for Presentation 
